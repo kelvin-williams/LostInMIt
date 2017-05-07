@@ -31,7 +31,10 @@ static void resize(int width, int height)
 {
     const float ar = (float) width / (float) height;
 
-    glViewport(0, 0, width, height);
+    gluLookAt(	0.0f, 0.0f, 5.0f, 
+				0.0f, 0.0f, 0.0f, 
+				0.0f, 1.0f, 0.0f);
+   // glViewport(0, 0, width, height);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glFrustum(-ar, ar, -1.0, 1.0, 2.0, 100.0);
@@ -46,10 +49,23 @@ static void display(void)
     const double a = t*90.0;
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glColor3d(1,0,0);
+    
+    //DRAWING TRIANGLES
+
+    glMatrixMode(GL_MODELVIEW); //Switch to the drawing perspective
+	glLoadIdentity(); //Reset the drawing perspective
+
+    
+    glPushMatrix();
+      glTranslated(0,0,-6);
+      glRotated(180,0,0,1);
+      glRotated(a,0,1,0);
+      DrawTriangle(glm::vec3{-1,1,0}, glm::vec3{1,1,0}, glm::vec3{0,-1,0});
+    glPopMatrix();
+      
+      
 
 
-      DrawTriangle(glm::vec3{-1,1,-6}, glm::vec3{1,1,-6}, glm::vec3{0,-1,-6});
    /* glPushMatrix();
         glTranslated(-2.4,1.2,-6);
         glRotated(60,1,0,0);
@@ -154,11 +170,11 @@ int main(int argc, char *argv[])
     glutIdleFunc(idle);
 
     glClearColor(0,0,0,0);
-    glEnable(GL_CULL_FACE);
-    glCullFace(GL_BACK);
+   // glEnable(GL_CULL_FACE);
+   // glCullFace(GL_BACK);
 
-    glEnable(GL_DEPTH_TEST);
-    glDepthFunc(GL_LESS);
+ //   glEnable(GL_DEPTH_TEST);
+ //   glDepthFunc(GL_LESS);
 
     glEnable(GL_LIGHT0);
     glEnable(GL_NORMALIZE);
@@ -170,10 +186,11 @@ int main(int argc, char *argv[])
     glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
     glLightfv(GL_LIGHT0, GL_POSITION, light_position);
 
-    glMaterialfv(GL_FRONT, GL_AMBIENT,   mat_ambient);
-    glMaterialfv(GL_FRONT, GL_DIFFUSE,   mat_diffuse);
-    glMaterialfv(GL_FRONT, GL_SPECULAR,  mat_specular);
-    glMaterialfv(GL_FRONT, GL_SHININESS, high_shininess);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT,   mat_ambient);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE,   mat_diffuse);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR,  mat_specular);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, high_shininess);
+
 
     glutMainLoop();
 
