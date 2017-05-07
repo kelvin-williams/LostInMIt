@@ -19,6 +19,7 @@
 #endif
 
 #include <stdlib.h>
+#include <glm/glm.hpp>
 #include "BasicFunctions.h"
 
 static int slices = 16;
@@ -48,7 +49,7 @@ static void display(void)
     glColor3d(1,0,0);
 
 
-      DrawTriangle(-1,1,-6,1,1,-6,0,-1,-6);
+      DrawTriangle(glm::vec3{-1,1,-6}, glm::vec3{1,1,-6}, glm::vec3{0,-1,-6});
    /* glPushMatrix();
         glTranslated(-2.4,1.2,-6);
         glRotated(60,1,0,0);
