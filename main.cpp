@@ -20,6 +20,10 @@
 
 #include <stdlib.h>
 #include <glm/glm.hpp>
+#include <assimp/Importer.hpp>      // C++ importer interface
+#include <assimp/scene.h>           // Output data structure
+#include <assimp/postprocess.h>     // Post processing flags
+#include <assimp/vector3.h>
 #include "BasicFunctions.h"
 
 static int slices = 16;
@@ -27,8 +31,7 @@ static int stacks = 16;
 
 /* GLUT callback Handlers */
 
-static void resize(int width, int height)
-{
+static void resize(int width, int height){
     const float ar = (float) width / (float) height;
 
     gluLookAt(	0.0f, 0.0f, 5.0f, 
@@ -58,9 +61,11 @@ static void display(void)
     
     glPushMatrix();
       glTranslated(0,0,-6);
-      glRotated(180,0,0,1);
+     // glRotated(180,0,0,1);
       glRotated(a,0,1,0);
-      DrawTriangle(glm::vec3{-1,1,0}, glm::vec3{1,1,0}, glm::vec3{0,-1,0});
+      LoadObject("monkey.obj");
+      
+      //DrawTriangle(glm::vec3{-1,1,0}, glm::vec3{1,1,0}, glm::vec3{0,-1,0});
     glPopMatrix();
       
       
@@ -170,11 +175,11 @@ int main(int argc, char *argv[])
     glutIdleFunc(idle);
 
     glClearColor(0,0,0,0);
-   // glEnable(GL_CULL_FACE);
-   // glCullFace(GL_BACK);
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_BACK);
 
- //   glEnable(GL_DEPTH_TEST);
- //   glDepthFunc(GL_LESS);
+    glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LESS);
 
     glEnable(GL_LIGHT0);
     glEnable(GL_NORMALIZE);
