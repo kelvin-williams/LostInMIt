@@ -31,10 +31,10 @@
 static void resize(int width, int height){
     const float ar = (float) width / (float) height;
 
-    gluLookAt(	0.0f, 0.0f, 5.0f, 
-				0.0f, 0.0f, 0.0f, 
-				0.0f, 1.0f, 0.0f);
-   // glViewport(0, 0, width, height);
+    //gluLookAt(	0.0f, 0.0f, 5.0f, 
+	//			0.0f, 0.0f, 0.0f, 
+	//			0.0f, 1.0f, 0.0f);
+    glViewport(0, 0, width, height);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glFrustum(-ar, ar, -1.0, 1.0, 2.0, 100.0);
