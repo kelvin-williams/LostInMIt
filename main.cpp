@@ -26,6 +26,14 @@
 #include <assimp/vector3.h>
 #include "BasicFunctions.h"
 
+float camx=0.0f;
+float camy=0.0f;
+float camz=5.0f;
+float viewx=0.0f;
+float viewy=0.0f;
+float viewz=0.0f;
+GLboolean pressed[4] = {false, false, false, false};
+
 /* GLUT callback Handlers */
 
 static void resize(int width, int height){
@@ -55,6 +63,9 @@ static void display(void)
     glMatrixMode(GL_MODELVIEW); //Switch to the drawing perspective
 	glLoadIdentity(); //Reset the drawing perspective
 
+    gluLookAt(	camx, camy, camz, 
+				viewx, viewy, viewz, 
+				0.0f, 1.0f, 0.0f);
     
     glPushMatrix();
       glTranslated(0,0,-6);
@@ -71,7 +82,57 @@ static void display(void)
 
 static void idle(void)
 {
+    if (pressed[0]){
+        camz -= 0.1f;
+    } 
+    if(pressed[1]){
+        camx -= 0.1f;
+        viewx -= 0.1f;
+    }
+    if(pressed[2]){
+        camz += 0.1f;
+    }
+    if(pressed[3]){
+        camx += 0.1f;
+        viewx += 0.1f;
+    }
     glutPostRedisplay();
+}
+
+static void key(unsigned char k, int x, int y)
+{
+    switch(k){
+        case 'w':
+            pressed[0] = true;          
+            break;
+        case 'a':
+            pressed[1] = true;
+            break;
+        case 's':
+            pressed[2] = true;
+            break;
+        case 'd':
+            pressed[3] = true;
+            break;
+    }              
+}
+
+static void key2(unsigned char k, int x, int y)
+{
+    switch(k){
+        case 'w':
+            pressed[0] = false;          
+             break;
+        case 'a':
+            pressed[1] = false;
+            break;
+        case 's':
+            pressed[2] = false;
+            break;
+        case 'd':
+            pressed[3] = false;
+            break;
+    }              
 }
 
 const GLfloat light_ambient[]  = { 0.0f, 0.0f, 0.0f, 1.0f };
@@ -98,6 +159,8 @@ int main(int argc, char *argv[])
     glutReshapeFunc(resize);
     glutDisplayFunc(display);
     glutIdleFunc(idle);
+    glutKeyboardFunc(key);
+    glutKeyboardUpFunc(key2);
 
     glClearColor(0,0,0,0);
     glEnable(GL_CULL_FACE);
