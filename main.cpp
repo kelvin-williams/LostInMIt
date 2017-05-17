@@ -12,11 +12,10 @@
  * using the + and - keys.
  */
 
-#ifdef __APPLE__
-#include <GLUT/glut.h>
-#else
+#include <GL/gl.h>
+#include <GL/glu.h>
 #include <GL/glut.h>
-#endif
+#include <SOIL/SOIL.h>
 
 #include <stdlib.h>
 #include <glm/glm.hpp>
@@ -24,6 +23,12 @@
 #include <assimp/scene.h>           // Output data structure
 #include <assimp/postprocess.h>     // Post processing flags
 #include <assimp/vector3.h>
+
+#define checkImageWidth 64
+#define checkImageHeight 64
+static GLubyte checkImage[checkImageHeight][checkImageWidth][4];
+static GLuint texName;
+
 #include "BasicFunctions.h"
 
 float camx=0.0f;
@@ -69,9 +74,9 @@ static void display(void)
     
     glPushMatrix();
       glTranslated(0,0,-6);
-     // glRotated(180,0,0,1);
       glRotated(a,0,1,0);
-      LoadObject("monkey.obj");
+      glRotated(90,0,0,1);
+      LoadObject("2box.obj");
       
       //DrawTriangle(glm::vec3{-1,1,0}, glm::vec3{1,1,0}, glm::vec3{0,-1,0});
     glPopMatrix();
@@ -155,6 +160,8 @@ int main(int argc, char *argv[])
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
 
     glutCreateWindow("Lost In MIT");
+
+    init2();
 
     glutReshapeFunc(resize);
     glutDisplayFunc(display);
