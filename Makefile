@@ -1,7 +1,7 @@
 CC = g++
 
 all:
-	$(CC) main.cpp -lglut -lassimp -lGLU -lGL -lSOIL -I. -o lostinmit -std=gnu++11
+	$(CC) *.cpp -lglut -lassimp -lGLU -lGL -lSOIL -I. -o lostinmit -std=gnu++11
 
 clean:
 	rm lostinmit

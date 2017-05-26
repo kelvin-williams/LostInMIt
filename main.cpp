@@ -16,6 +16,7 @@
 #include <GL/glu.h>
 #include <GL/glut.h>
 #include <SOIL/SOIL.h>
+#include <Camera.h>
 
 #include <stdlib.h>
 #include <glm/glm.hpp>
@@ -28,22 +29,39 @@ GLuint texName[10];
 
 #include "BasicFunctions.h"
 
-float camx=0.0f;
-float camy=0.0f;
-float camz=5.0f;
-float viewx=0.0f;
-float viewy=0.0f;
-float viewz=0.0f;
-GLboolean pressed[4] = {false, false, false, false};
+using namespace sowi;
+
+Camera camera;
+
+tAABB p1 = {2.2f, -18.8f, -2.2f, -20.0f};
+tAABB p2 = {2.2f, 20.8f, -2.2f, 18.8f};
+
+tAABB in[2] = {p1, p2};
 
 /* GLUT callback Handlers */
+
+bool AABBtoAABB(const tAABB& tBox1, const tAABB& tBox2){
+		return(tBox1.MaxX < tBox2.MaxX &&
+			   tBox1.MinX > tBox2.MinX &&
+			   tBox1.MaxZ < tBox2.MaxZ &&
+			   tBox1.MinZ > tBox2.MinZ);
+}
+void outofBox(Camera *p, tAABB sala){
+		if((AABBtoAABB(p->futplayer, sala))){
+			p->move = false;
+		}
+}
+
+void inBoxF(Camera *p, tAABB sala){
+		if((AABBtoAABB(p->futplayer, sala))){
+			p->futposx = -15.0f;
+			p->futposz = 8.5f;
+		}
+}
 
 static void resize(int width, int height){
     const float ar = (float) width / (float) height;
 
-    //gluLookAt(	0.0f, 0.0f, 5.0f, 
-	//			0.0f, 0.0f, 0.0f, 
-	//			0.0f, 1.0f, 0.0f);
     glViewport(0, 0, width, height);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
@@ -60,28 +78,42 @@ static void display(void)
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
+    glViewport(0, 0, camera.width, camera.height);
+
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluPerspective(50.0f, 1.0f, 0.001f, 100.0f);
+
     //DRAWING TRIANGLES
 
+    camera.mover();
+	
+	for(int i = 0; i < 2; i++){
+		outofBox(&camera, in[i]);
+	}
+	
+	camera.attAABB();
+	
     glMatrixMode(GL_MODELVIEW); //Switch to the drawing perspective
 	glLoadIdentity(); //Reset the drawing perspective
 
-    gluLookAt(	camx, camy, camz, 
-				viewx, viewy, viewz, 
-				0.0f, 1.0f, 0.0f);
+    gluLookAt(	camera.posx, camera.posy, camera.posz, //posição da camera
+				camera.camx, camera.camy, camera.camz,	//look at da camera
+				0.0f, 1.0f, 0.0f);  //vetor UP da camera
     
     glEnable(GL_TEXTURE_2D);
     glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
     
     
     ///////////////OBJECTS///////////////////////
-    glPushMatrix();
+    /*glPushMatrix();
       glTranslated(0,0,-6);
       glRotated(a,0,1,0);
       glRotated(90,0,0,1);
       glBindTexture(GL_TEXTURE_2D, texName[0]);
       LoadObject("2box.obj");
       //DrawTriangle(glm::vec3{-1,1,0}, glm::vec3{1,1,0}, glm::vec3{0,-1,0});
-    glPopMatrix();
+    glPopMatrix();*/
 
 
     /////////////////QUADS/////////////////////////////////////////
@@ -187,57 +219,17 @@ static void display(void)
 
 static void idle(void)
 {
-    if (pressed[0]){
-        camz -= 0.1f;
-    } 
-    if(pressed[1]){
-        camx -= 0.1f;
-        viewx -= 0.1f;
-    }
-    if(pressed[2]){
-        camz += 0.1f;
-    }
-    if(pressed[3]){
-        camx += 0.1f;
-        viewx += 0.1f;
-    }
     glutPostRedisplay();
 }
 
-static void key(unsigned char k, int x, int y)
-{
-    switch(k){
-        case 'w':
-            pressed[0] = true;          
-            break;
-        case 'a':
-            pressed[1] = true;
-            break;
-        case 's':
-            pressed[2] = true;
-            break;
-        case 'd':
-            pressed[3] = true;
-            break;
-    }              
+void mexerCamera(int x, int y){
+	camera.lookerCamera(x, y);
 }
-
-static void key2(unsigned char k, int x, int y)
-{
-    switch(k){
-        case 'w':
-            pressed[0] = false;          
-             break;
-        case 'a':
-            pressed[1] = false;
-            break;
-        case 's':
-            pressed[2] = false;
-            break;
-        case 'd':
-            pressed[3] = false;
-            break;
-    }              
+void keyPressed(unsigned char key, int x, int y){
+	camera.keyPressed(key, x, y);
+}
+void keyUp(unsigned char key, int x, int y){
+	camera.keyUp(key, x, y);
 }
 
 const GLfloat light_ambient[]  = { 0.0f, 0.0f, 0.0f, 1.0f };
@@ -260,14 +252,17 @@ int main(int argc, char *argv[])
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
 
     glutCreateWindow("Lost In MIT");
+    glutSetCursor(GLUT_CURSOR_NONE);
 
     init2();
 
     glutReshapeFunc(resize);
     glutDisplayFunc(display);
     glutIdleFunc(idle);
-    glutKeyboardFunc(key);
-    glutKeyboardUpFunc(key2);
+    
+    glutPassiveMotionFunc(mexerCamera);
+	glutKeyboardFunc(keyPressed);
+	glutKeyboardUpFunc(keyUp);
 
     glClearColor(0,0,0,0);
     glEnable(GL_CULL_FACE);
