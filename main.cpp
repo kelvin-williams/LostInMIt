@@ -204,6 +204,15 @@ static void display(void)
       glTexCoord2f(1.0f,1.0f); glVertex3f(10.2f, 2.7f, 20.0f/3.0f + 20.0f/6.0f);
       glEnd();
 
+      //Stairs Right Wall
+      glBindTexture(GL_TEXTURE_2D, texName[2]);
+      glBegin(GL_QUADS);
+      glTexCoord2f(1.0f,1.0f); glVertex3f(10.2f, 2.7f, 20.0f/3.0f);
+      glTexCoord2f(1.0f,0.0f); glVertex3f(10.2f, -1.7f, 20.0f/3.0f);
+      glTexCoord2f(0.0f,0.0f); glVertex3f(1.2f, -1.7f, 20.0f/3.0f);
+      glTexCoord2f(0.0f,1.0f); glVertex3f(1.2f, 2.7f, 20.0f/3.0f);
+      glEnd();
+
       //Middle Corridor Floor
       glBindTexture(GL_TEXTURE_2D, texName[1]);
       glBegin(GL_QUADS);
@@ -301,6 +310,34 @@ static void display(void)
       glTexCoord2f(1.0f,0.0f); glVertex3f(10.2f, -1.7f, 20.0f/3.0f + 20.0f/6.0f);
       glTexCoord2f(1.0f,3.0f); glVertex3f(10.2f, -1.7f, 0.0f);
       glTexCoord2f(0.0f,3.0f); glVertex3f(10.2f, 2.7f, 0.0f);
+      glEnd();
+
+      //Right Hall Left Wall (Other Side (stairs))
+      glBindTexture(GL_TEXTURE_2D, texName[2]);
+      glBegin(GL_QUADS);
+      glTexCoord2f(0.0f,3.0f); glVertex3f(10.2f, 2.7f, 0.0f);
+      glTexCoord2f(1.0f,3.0f); glVertex3f(10.2f, -1.7f, 0.0f);
+      glTexCoord2f(1.0f,0.0f); glVertex3f(10.2f, -1.7f, 20.0f/3.0f + 20.0f/6.0f);
+      glTexCoord2f(0.0f,0.0f); glVertex3f(10.2f, 2.7f, 20.0f/3.0f + 20.0f/6.0f);
+      glEnd();
+
+      //Middle Wall
+      glBindTexture(GL_TEXTURE_2D, texName[2]);
+      glBegin(GL_QUADS);
+      glTexCoord2f(0.0f,0.0f); glVertex3f(10.2f, 2.7f, 0.0f);
+      glTexCoord2f(1.0f,0.0f); glVertex3f(10.2f, -1.7f, 0.0f);
+      glTexCoord2f(1.0f,3.0f); glVertex3f(1.2f, -1.7f, 0.0f);
+      glTexCoord2f(0.0f,3.0f); glVertex3f(1.2f, 2.7f, 0.0f);
+      glEnd();
+
+      //Middle Wall (Other Side)
+      glBindTexture(GL_TEXTURE_2D, texName[2]);
+      glBegin(GL_QUADS);
+      glTexCoord2f(0.0f,3.0f); glVertex3f(1.2f, 2.7f, 0.0f);
+      glTexCoord2f(1.0f,3.0f); glVertex3f(1.2f, -1.7f, 0.0f);
+      glTexCoord2f(1.0f,0.0f); glVertex3f(10.2f, -1.7f, 0.0f);
+      glTexCoord2f(0.0f,0.0f); glVertex3f(10.2f, 2.7f, 0.0f);
+      
       glEnd();
 
      glDisable(GL_TEXTURE_2D);
