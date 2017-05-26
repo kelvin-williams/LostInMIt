@@ -35,8 +35,11 @@ Camera camera;
 
 tAABB p1 = {2.2f, -18.8f, -2.2f, -20.0f};
 tAABB p2 = {2.2f, 20.8f, -2.2f, 18.8f};
+tAABB p3 = {-0.3f, 18.8f, -4.2f, -20.0f};
+tAABB p4 = {3.2f, 10.8f, 0.3f, -20.0f};
+tAABB p5 = {3.2f, 18.8f, 0.3f, 12.0f};
 
-tAABB in[2] = {p1, p2};
+tAABB in[5] = {p1, p2, p3, p4, p5};
 
 /* GLUT callback Handlers */
 
@@ -82,13 +85,13 @@ static void display(void)
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	gluPerspective(50.0f, 1.0f, 0.001f, 100.0f);
+	gluPerspective(55.0f, 1.0f, 0.001f, 100.0f);
 
     //DRAWING TRIANGLES
 
     camera.mover();
 	
-	for(int i = 0; i < 2; i++){
+	for(int i = 0; i < 5; i++){
 		outofBox(&camera, in[i]);
 	}
 	
