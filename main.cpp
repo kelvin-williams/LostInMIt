@@ -35,9 +35,9 @@ Camera camera;
 
 tAABB p1 = {2.2f, -18.8f, -2.2f, -20.0f};
 tAABB p2 = {2.2f, 20.8f, -2.2f, 18.8f};
-tAABB p3 = {-0.3f, 18.8f, -4.2f, -20.0f};
+tAABB p3 = {-0.3f, 20.8f, -4.2f, -20.0f};
 tAABB p4 = {3.2f, 10.8f, 0.3f, -20.0f};
-tAABB p5 = {3.2f, 18.8f, 0.3f, 12.0f};
+tAABB p5 = {3.2f, 20.8f, 0.3f, 12.0f};
 
 tAABB in[5] = {p1, p2, p3, p4, p5};
 
