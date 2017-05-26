@@ -167,7 +167,16 @@ static void display(void)
       glTexCoord2f(0.0f,0.0f); glVertex3f(1.2f, -1.7f, 2.0f*20.0f/3.0f);
       glTexCoord2f(3.0f,0.0f); glVertex3f(10.2f, -1.7f, 2.0f*20.0f/3.0f);
       glTexCoord2f(3.0f,1.0f); glVertex3f(10.2f, -1.7f, 20.0f/3.0f + 20.0f/6.0f);
-      glEnd();      
+      glEnd();
+
+      //Middle Corridor Ceiling
+      glBindTexture(GL_TEXTURE_2D, texName[3]);
+      glBegin(GL_QUADS);
+      glTexCoord2f(0.0f,1.0f); glVertex3f(1.2f, 2.7f, 20.0f/3.0f + 20.0f/6.0f);
+      glTexCoord2f(3.0f,1.0f); glVertex3f(10.2f, 2.7f, 20.0f/3.0f + 20.0f/6.0f);
+      glTexCoord2f(3.0f,0.0f); glVertex3f(10.2f, 2.7f, 2.0f*20.0f/3.0f);
+      glTexCoord2f(0.0f,0.0f); glVertex3f(1.2f, 2.7f, 2.0f*20.0f/3.0f);
+      glEnd();  
 
 
      glDisable(GL_TEXTURE_2D);
