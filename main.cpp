@@ -25,7 +25,62 @@
 #include <assimp/postprocess.h>     // Post processing flags
 #include <assimp/vector3.h>
 
+typedef struct triangle{
+
+    glm::vec4 p1p, p2p, p3p;//Vértices do triângulo
+    glm::vec3 p1n, p2n, p3n;//Normais dos Três vértices
+    
+}Triangle;
+
+typedef struct node{
+
+    Triangle t;
+    struct node * next;
+
+}Node;
+
+typedef struct list{
+
+    Node * head;
+
+}List;
+
+void init_list(List * list){
+
+    list->head = NULL;
+}
+
+void list_add(List * list, Triangle t){
+
+    if(list->head == NULL){
+        list->head = (Node*)malloc(sizeof(Node));
+        list->head->t = t;
+        list->head->next = NULL;
+    }
+    else{
+        Node * aux;
+        aux = (Node*)malloc(sizeof(Node));
+        aux->t = t;
+        aux->next = list->head;
+        list->head = aux;
+    }
+    
+}
+
+void list_free(List * trianglelist){
+
+    Node * aux = trianglelist->head;
+
+    while(aux!=NULL){
+	    Node* aux2 = aux->next;
+	    free(aux);
+	    aux = aux2;
+
+ }
+}
+
 GLuint texName[10];
+List trianglelist[10];
 
 #include "BasicFunctions.h"
 
@@ -89,7 +144,6 @@ static void display(void)
 	glLoadIdentity();
 	gluPerspective(55.0f, 1.0f, 0.001f, 100.0f);
 
-    //DRAWING TRIANGLES
 
     camera.mover();
 	
@@ -111,14 +165,15 @@ static void display(void)
     
     
     ///////////////OBJECTS///////////////////////
-    /*glPushMatrix();
-      glTranslated(0,0,-6);
-      glRotated(a,0,1,0);
-      glRotated(90,0,0,1);
-      glBindTexture(GL_TEXTURE_2D, texName[0]);
-      LoadObject("2box.obj");
+    glPushMatrix();
+      glTranslated(0,-1,-6);
+     // glRotated(a,0,1,0);
+      //glRotated(90,0,1,0);
+      //glBindTexture(GL_TEXTURE_2D, texName[0]);
+      //LoadObject2("Chair_01.obj");
+      PrintObj(&trianglelist[0]);
       //DrawTriangle(glm::vec3{-1,1,0}, glm::vec3{1,1,0}, glm::vec3{0,-1,0});
-    glPopMatrix();*/
+    glPopMatrix();
 
 
     /////////////////QUADS/////////////////////////////////////////

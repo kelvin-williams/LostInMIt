@@ -7,7 +7,6 @@ typedef struct point{
 }Point;
 
 
-
 void DrawTriangle( glm::vec3 p1, glm::vec3 p2, glm::vec3 p3){
 
 	
@@ -24,8 +23,58 @@ void DrawTriangle( glm::vec3 p1, glm::vec3 p2, glm::vec3 p3){
     
 }
 
+void LoadObject2(const char * obj, List * list){
+
+
+    Assimp::Importer importer;
+    
+    const aiScene* scene = importer.ReadFile(obj, aiProcess_Triangulate | aiProcess_GenSmoothNormals);
+    unsigned int mesh, face;
+
+    for (mesh = 0 ; mesh < scene->mNumMeshes; mesh++) 
+    {
+
+        for(face = 0; face < scene->mMeshes[mesh]->mNumFaces; face++) 
+        {
+            Triangle t;
+
+            t.p1p = {  (float) scene->mMeshes[mesh]->mVertices[scene->mMeshes[mesh]->mFaces[face].mIndices[0]].x, 
+                       (float) scene->mMeshes[mesh]->mVertices[scene->mMeshes[mesh]->mFaces[face].mIndices[0]].y, 
+                       (float) scene->mMeshes[mesh]->mVertices[scene->mMeshes[mesh]->mFaces[face].mIndices[0]].z,1.0f};
+            t.p1n = {(float) scene->mMeshes[mesh]->mNormals[scene->mMeshes[mesh]->mFaces[face].mIndices[0]].x,
+                     (float) scene->mMeshes[mesh]->mNormals[scene->mMeshes[mesh]->mFaces[face].mIndices[0]].y,
+                     (float) scene->mMeshes[mesh]->mNormals[scene->mMeshes[mesh]->mFaces[face].mIndices[0]].z};
+
+
+            t.p2p = {  (float) scene->mMeshes[mesh]->mVertices[scene->mMeshes[mesh]->mFaces[face].mIndices[1]].x,
+                       (float) scene->mMeshes[mesh]->mVertices[scene->mMeshes[mesh]->mFaces[face].mIndices[1]].y,
+                       (float) scene->mMeshes[mesh]->mVertices[scene->mMeshes[mesh]->mFaces[face].mIndices[1]].z,1.0f};
+            t.p2n = {(float) scene->mMeshes[mesh]->mNormals[scene->mMeshes[mesh]->mFaces[face].mIndices[1]].x,
+                     (float) scene->mMeshes[mesh]->mNormals[scene->mMeshes[mesh]->mFaces[face].mIndices[1]].y,
+                     (float) scene->mMeshes[mesh]->mNormals[scene->mMeshes[mesh]->mFaces[face].mIndices[1]].z};
+
+
+            t.p3p = {  (float) scene->mMeshes[mesh]->mVertices[scene->mMeshes[mesh]->mFaces[face].mIndices[2]].x,
+                       (float) scene->mMeshes[mesh]->mVertices[scene->mMeshes[mesh]->mFaces[face].mIndices[2]].y,
+                       (float) scene->mMeshes[mesh]->mVertices[scene->mMeshes[mesh]->mFaces[face].mIndices[2]].z,1.0f};
+            t.p3n = {(float) scene->mMeshes[mesh]->mNormals[scene->mMeshes[mesh]->mFaces[face].mIndices[2]].x,
+                     (float) scene->mMeshes[mesh]->mNormals[scene->mMeshes[mesh]->mFaces[face].mIndices[2]].y,
+                     (float) scene->mMeshes[mesh]->mNormals[scene->mMeshes[mesh]->mFaces[face].mIndices[2]].z};
+
+            list_add(list, t);
+           
+        }
+
+    }
+
+}
+
+
+
+
 void init2(){
 
+  ////////////////Texturas/////////////////////////////////////////////////////
   texName[0] = SOIL_load_OGL_texture
         (
         "cuco.jpg",
@@ -108,6 +157,12 @@ void init2(){
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_LINEAR);
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR_MIPMAP_LINEAR);
 
+
+    //////OBJETOS//////////////////////////////////////////////////
+    
+    init_list(&trianglelist[0]);
+    LoadObject2("Chair_01.obj", &trianglelist[0]);
+
 }
 
 
@@ -119,53 +174,45 @@ void LoadObject(const char * obj){
     const aiScene* scene = importer.ReadFile(obj, aiProcess_Triangulate | 
                                                   aiProcess_GenSmoothNormals);
     unsigned int mesh, face;
-
-   
-   
-
-   
     
     for (mesh = 0 ; mesh < scene->mNumMeshes; mesh++) 
     {
       
       
-      if(scene->mMeshes[mesh]->HasTextureCoords(0)){
-        ;
-        } 
         for(face = 0; face < scene->mMeshes[mesh]->mNumFaces; face++) 
         {
 
 
             glBegin(GL_TRIANGLES);
 
-           // glColor3f(0.6f, 0.6f, 0.6f);
+            glColor3f(0.0f, 0.0f, 1.0f);
             
 //front
-            glNormal3f((float) scene->mMeshes[mesh]->mNormals[scene->mMeshes[mesh]->mFaces[face].mIndices[0]].x,
-                       (float) scene->mMeshes[mesh]->mNormals[scene->mMeshes[mesh]->mFaces[face].mIndices[0]].y,
-                       (float) scene->mMeshes[mesh]->mNormals[scene->mMeshes[mesh]->mFaces[face].mIndices[0]].z);
-            glTexCoord2f((float)scene->mMeshes[mesh]->mTextureCoords[0][scene->mMeshes[mesh]->mFaces[face].mIndices[0]].x,
-                         (float)scene->mMeshes[mesh]->mTextureCoords[0][scene->mMeshes[mesh]->mFaces[face].mIndices[0]].y);
+        //    glNormal3f((float) scene->mMeshes[mesh]->mNormals[scene->mMeshes[mesh]->mFaces[face].mIndices[0]].x,
+          //             (float) scene->mMeshes[mesh]->mNormals[scene->mMeshes[mesh]->mFaces[face].mIndices[0]].y,
+            //           (float) scene->mMeshes[mesh]->mNormals[scene->mMeshes[mesh]->mFaces[face].mIndices[0]].z);
+          //  glTexCoord2f((float)scene->mMeshes[mesh]->mTextureCoords[0][scene->mMeshes[mesh]->mFaces[face].mIndices[0]].x,
+             //            (float)scene->mMeshes[mesh]->mTextureCoords[0][scene->mMeshes[mesh]->mFaces[face].mIndices[0]].y);
             //glTexCoord2f(0.0f,0.0f);
             glVertex3f((float) scene->mMeshes[mesh]->mVertices[scene->mMeshes[mesh]->mFaces[face].mIndices[0]].x, 
                        (float) scene->mMeshes[mesh]->mVertices[scene->mMeshes[mesh]->mFaces[face].mIndices[0]].y, 
                        (float) scene->mMeshes[mesh]->mVertices[scene->mMeshes[mesh]->mFaces[face].mIndices[0]].z);
                                    
-            glNormal3f((float) scene->mMeshes[mesh]->mNormals[scene->mMeshes[mesh]->mFaces[face].mIndices[1]].x,
-                       (float) scene->mMeshes[mesh]->mNormals[scene->mMeshes[mesh]->mFaces[face].mIndices[1]].y,
-                       (float) scene->mMeshes[mesh]->mNormals[scene->mMeshes[mesh]->mFaces[face].mIndices[1]].z);
-            glTexCoord2f((float)scene->mMeshes[mesh]->mTextureCoords[0][scene->mMeshes[mesh]->mFaces[face].mIndices[1]].x,
-                        (float)scene->mMeshes[mesh]->mTextureCoords[0][scene->mMeshes[mesh]->mFaces[face].mIndices[1]].y);
+         //   glNormal3f((float) scene->mMeshes[mesh]->mNormals[scene->mMeshes[mesh]->mFaces[face].mIndices[1]].x,
+           //            (float) scene->mMeshes[mesh]->mNormals[scene->mMeshes[mesh]->mFaces[face].mIndices[1]].y,
+             //          (float) scene->mMeshes[mesh]->mNormals[scene->mMeshes[mesh]->mFaces[face].mIndices[1]].z);
+          //  glTexCoord2f((float)scene->mMeshes[mesh]->mTextureCoords[0][scene->mMeshes[mesh]->mFaces[face].mIndices[1]].x,
+              //          (float)scene->mMeshes[mesh]->mTextureCoords[0][scene->mMeshes[mesh]->mFaces[face].mIndices[1]].y);
             //glTexCoord2f(0.0f,1.0f);
             glVertex3f((float) scene->mMeshes[mesh]->mVertices[scene->mMeshes[mesh]->mFaces[face].mIndices[1]].x,
                        (float) scene->mMeshes[mesh]->mVertices[scene->mMeshes[mesh]->mFaces[face].mIndices[1]].y,
                        (float) scene->mMeshes[mesh]->mVertices[scene->mMeshes[mesh]->mFaces[face].mIndices[1]].z);
                                    
-            glNormal3f((float) scene->mMeshes[mesh]->mNormals[scene->mMeshes[mesh]->mFaces[face].mIndices[2]].x,
-                       (float) scene->mMeshes[mesh]->mNormals[scene->mMeshes[mesh]->mFaces[face].mIndices[2]].y,
-                       (float) scene->mMeshes[mesh]->mNormals[scene->mMeshes[mesh]->mFaces[face].mIndices[2]].z);
-            glTexCoord2f((float)scene->mMeshes[mesh]->mTextureCoords[0][scene->mMeshes[mesh]->mFaces[face].mIndices[2]].x,
-                         (float)scene->mMeshes[mesh]->mTextureCoords[0][scene->mMeshes[mesh]->mFaces[face].mIndices[2]].y);
+           // glNormal3f((float) scene->mMeshes[mesh]->mNormals[scene->mMeshes[mesh]->mFaces[face].mIndices[2]].x,
+             //          (float) scene->mMeshes[mesh]->mNormals[scene->mMeshes[mesh]->mFaces[face].mIndices[2]].y,
+               //        (float) scene->mMeshes[mesh]->mNormals[scene->mMeshes[mesh]->mFaces[face].mIndices[2]].z);
+          //  glTexCoord2f((float)scene->mMeshes[mesh]->mTextureCoords[0][scene->mMeshes[mesh]->mFaces[face].mIndices[2]].x,
+               //          (float)scene->mMeshes[mesh]->mTextureCoords[0][scene->mMeshes[mesh]->mFaces[face].mIndices[2]].y);
             //glTexCoord2f(1.0f,1.0f);
             glVertex3f((float) scene->mMeshes[mesh]->mVertices[scene->mMeshes[mesh]->mFaces[face].mIndices[2]].x,
                        (float) scene->mMeshes[mesh]->mVertices[scene->mMeshes[mesh]->mFaces[face].mIndices[2]].y,
@@ -210,7 +257,35 @@ void LoadObject(const char * obj){
        glEnd();
         }
     }
-   
+
+}
+
+
+void PrintObj(List * list){
+
+    Node * aux = list->head;
+    glBegin(GL_TRIANGLES);
+
+            glColor3f(0.0f, 0.0f, 1.0f);
+
+    while(aux!=NULL){
+
+        glNormal3f(aux->t.p1n.x, aux->t.p1n.y, aux->t.p1n.z );
+        glVertex3f(aux->t.p1p.x, aux->t.p1p.y, aux->t.p1p.z );
+
+        glNormal3f(aux->t.p2n.x, aux->t.p2n.y, aux->t.p2n.z );
+        glVertex3f(aux->t.p2p.x, aux->t.p2p.y, aux->t.p2p.z );
+
+        glNormal3f(aux->t.p3n.x, aux->t.p3n.y, aux->t.p3n.z );
+        glVertex3f(aux->t.p3p.x, aux->t.p3p.y, aux->t.p3p.z );
+        
+        if (aux->next == NULL) break;
+        aux = aux->next;
+
+    }
+
+    glEnd();
+
 }
 
 
