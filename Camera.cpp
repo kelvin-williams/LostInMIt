@@ -11,6 +11,7 @@ namespace sowi{
 
 	Camera::Camera(){
 		move = true;
+		full = false;
 		futposx = 0.0f;
 		futposz = 0.0f;
 		posx = 0.0f;
@@ -37,6 +38,12 @@ namespace sowi{
 	}
 	Camera::~Camera(){
 
+	}
+	void Camera::fullStart(){
+		if(full == false)
+			full = true;
+		else
+			full = false;
 	}
 	void Camera::frenteStart(){
 		frente = true;
@@ -75,6 +82,9 @@ namespace sowi{
 		}
 		if(key == 'd'){
 			direitaStart();
+		}
+		if(key == 'f'){
+			fullStart();
 		}
 	}
 

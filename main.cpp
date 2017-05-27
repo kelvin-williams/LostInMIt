@@ -88,14 +88,19 @@ using namespace sowi;
 
 Camera camera;
 
-tAABB p1 = {2.2f, -18.8f, -2.2f, -20.0f};
+tAABB p1 = {2.2f, -18.8f, -2.2f, -22.0f};
 tAABB p2 = {13.2f, 20.8f, -2.2f, 18.8f};
 tAABB p3 = {-0.3f, 20.8f, -4.2f, -20.0f};
-tAABB p4 = {11.2f, 10.8f, 0.3f, -20.0f};
+tAABB p4 = {11.2f, 10.8f, 0.3f, -21.0f};
 tAABB p5 = {11.2f, 20.8f, 0.3f, 12.0f};
-tAABB p6 = {15.2f, 20.8f, 11.8f, -20.0f};
+tAABB p6 = {13.2f, 20.8f, 11.8f, -20.0f};
+tAABB p7 = {11.2f, -20.0f, 1.3f, -26.0f};
+tAABB p8 = {26.3f, -24.0f, 10.2f, -30.0f};
+tAABB p9 = {30.0f, -8.0f, 23.5f, -30.0f};
+tAABB p10 = {30.2f, -5.0f, 11.5f, -10.8f};
+tAABB p11 = {13.2f, -18.8f, 9.5f, -21.8f};
 
-tAABB in[6] = {p1, p2, p3, p4, p5, p6};
+tAABB in[11] = {p1, p2, p3, p4, p5, p6, p7, p8, p9, p10};
 
 
 
@@ -150,6 +155,15 @@ static void display(void)
     
     glViewport(0, 0, camera.width, camera.height);
 
+    if (camera.full == true){
+        resize (1366, 768);
+        glutFullScreen();
+    }
+    else{
+        resize(800, 600);
+        glutReshapeWindow(800, 600);
+    }
+
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	gluPerspective(55.0f, 1.0f, 0.001f, 100.0f);
@@ -157,7 +171,7 @@ static void display(void)
 
     camera.mover();
 	
-	for(int i = 0; i < 6; i++){
+	for(int i = 0; i < 11; i++){
 		outofBox(&camera, in[i]);
 	}
 	

@@ -8,6 +8,7 @@ class Camera{
 	public:
 		Camera();
 		virtual ~Camera();
+		void fullStart();
 		void frenteStart();
 		void frenteStop();
 		void trasStart();
@@ -29,7 +30,7 @@ class Camera{
 		GLdouble lookx, looky, lookz;
 		GLdouble camx, camy, camz;
 
-		bool move;
+		bool move, full;
 		bool frente, esquerda, direita, tras;
 
 		float sensmove;
