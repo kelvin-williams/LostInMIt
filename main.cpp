@@ -53,13 +53,13 @@ void init_list(List * list){
 void list_add(List * list, Triangle t){
 
     if(list->head == NULL){
-        list->head = (Node*)malloc(sizeof(Node));
+        list->head = new(Node);
         list->head->t = t;
         list->head->next = NULL;
     }
     else{
         Node * aux;
-        aux = (Node*)malloc(sizeof(Node));
+        aux = new(Node);
         aux->t = t;
         aux->next = list->head;
         list->head = aux;
