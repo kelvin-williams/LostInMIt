@@ -27,7 +27,7 @@
 
 typedef struct triangle{
 
-    glm::vec4 p1p, p2p, p3p;//Vértices do triângulo
+    glm::vec3 p1p, p2p, p3p;//Vértices do triângulo
     glm::vec3 p1n, p2n, p3n;//Normais dos Três vértices
     
 }Triangle;
