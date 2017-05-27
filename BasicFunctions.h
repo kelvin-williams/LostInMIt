@@ -12,7 +12,7 @@ void DrawTriangle( glm::vec3 p1, glm::vec3 p2, glm::vec3 p3){
 	
     glBegin(GL_TRIANGLES);
 
-    glColor3f(0.6f, 0.6f, 0.6f);
+    glColor3f(0.0f, 0.1f, 0.0f);
 
     glVertex3f( p3.x, p3.y, p3.z);
     glVertex3f( p2.x, p2.y, p2.z);
@@ -266,9 +266,11 @@ void PrintObj(List * list){
     Node * aux = list->head;
     glBegin(GL_TRIANGLES);
 
-            glColor3f(0.0f, 0.0f, 1.0f);
+    
 
     while(aux!=NULL){
+
+        glColor3f(0.0f, 1.0f, 0.0f);
 
         glNormal3f(aux->t.p1n.x, aux->t.p1n.y, aux->t.p1n.z );
         glVertex3f(aux->t.p1p.x, aux->t.p1p.y, aux->t.p1p.z );

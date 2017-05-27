@@ -160,22 +160,22 @@ static void display(void)
 				camera.camx, camera.camy, camera.camz,	//look at da camera
 				0.0f, 1.0f, 0.0f);  //vetor UP da camera
     
-    glEnable(GL_TEXTURE_2D);
-    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
-    
+   
+    ///NO TEXTURE
     
     ///////////////OBJECTS///////////////////////
     glPushMatrix();
-      glTranslated(0,-1,-6);
-     // glRotated(a,0,1,0);
-      //glRotated(90,0,1,0);
-      //glBindTexture(GL_TEXTURE_2D, texName[0]);
-      //LoadObject2("Chair_01.obj");
+      glTranslated(17.0,-1.7,-20);
+      glRotated(-90,0,1,0);
+      glScaled(0.7,0.7,0.5);
       PrintObj(&trianglelist[0]);
-      //DrawTriangle(glm::vec3{-1,1,0}, glm::vec3{1,1,0}, glm::vec3{0,-1,0});
-    glPopMatrix();
+      glPopMatrix();
 
 
+/////YES TEXTURE/////////////////
+
+ glEnable(GL_TEXTURE_2D);
+    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
     /////////////////QUADS/////////////////////////////////////////
     
     
@@ -596,8 +596,8 @@ const GLfloat light_diffuse[]  = { 1.0f, 1.0f, 1.0f, 1.0f };
 const GLfloat light_specular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 const GLfloat light_position[] = { 2.0f, 5.0f, 5.0f, 0.0f };
 
-const GLfloat mat_ambient[]    = { 0.7f, 0.7f, 0.7f, 1.0f };
-const GLfloat mat_diffuse[]    = { 0.8f, 0.8f, 0.8f, 1.0f };
+const GLfloat mat_ambient[]    = { 0.5f, 0.5f, 0.5f, 1.0f };
+const GLfloat mat_diffuse[]    = { 0.6f, 0.6f, 0.6f, 1.0f };
 const GLfloat mat_specular[]   = { 1.0f, 1.0f, 1.0f, 1.0f };
 const GLfloat high_shininess[] = { 100.0f };
 
