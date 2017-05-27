@@ -34,12 +34,14 @@ using namespace sowi;
 Camera camera;
 
 tAABB p1 = {2.2f, -18.8f, -2.2f, -20.0f};
-tAABB p2 = {2.2f, 20.8f, -2.2f, 18.8f};
+tAABB p2 = {13.2f, 20.8f, -2.2f, 18.8f};
 tAABB p3 = {-0.3f, 20.8f, -4.2f, -20.0f};
-tAABB p4 = {3.2f, 10.8f, 0.3f, -20.0f};
-tAABB p5 = {3.2f, 20.8f, 0.3f, 12.0f};
+tAABB p4 = {11.2f, 10.8f, 0.3f, -20.0f};
+tAABB p5 = {11.2f, 20.8f, 0.3f, 12.0f};
+tAABB p6 = {15.2f, 20.8f, 11.8f, -20.0f};
 
-tAABB in[5] = {p1, p2, p3, p4, p5};
+tAABB in[6] = {p1, p2, p3, p4, p5, p6};
+
 
 /* GLUT callback Handlers */
 
@@ -91,7 +93,7 @@ static void display(void)
 
     camera.mover();
 	
-	for(int i = 0; i < 5; i++){
+	for(int i = 0; i < 6; i++){
 		outofBox(&camera, in[i]);
 	}
 	
