@@ -181,10 +181,10 @@ static void display(void)
       //Left Hall Right (Half) Wall (other side)
       glBindTexture(GL_TEXTURE_2D, texName[4]);
       glBegin(GL_QUADS);
-      glTexCoord2f(0.0f,1.0f); glVertex3f(1.6f, -0.5f, 0.0f);
-      glTexCoord2f(0.0f,0.0f); glVertex3f(1.6f, -1.7f, 0.0f);
-      glTexCoord2f(18.0f,0.0f); glVertex3f(1.6f, -1.7f, -20.0f);
-      glTexCoord2f(18.0f,1.0f); glVertex3f(1.6f, -0.5f, -20.0f);
+      glTexCoord2f(0.0f,9.0f); glVertex3f(1.6f, -0.5f, 0.0f);
+      glTexCoord2f(0.0f,0.0f); glVertex3f(1.6f, -10.7f, 0.0f);
+      glTexCoord2f(18.0f,0.0f); glVertex3f(1.6f, -10.7f, -20.0f);
+      glTexCoord2f(18.0f,9.0f); glVertex3f(1.6f, -0.5f, -20.0f);
       glEnd();
 
       //Left Hall Right ("Elevator Shaft") Wall
@@ -227,10 +227,10 @@ static void display(void)
       //Stairs Right Wall
       glBindTexture(GL_TEXTURE_2D, texName[2]);
       glBegin(GL_QUADS);
-      glTexCoord2f(1.0f,1.0f); glVertex3f(10.2f, 2.7f, 20.0f/3.0f);
-      glTexCoord2f(1.0f,0.0f); glVertex3f(10.2f, -1.7f, 20.0f/3.0f);
-      glTexCoord2f(0.0f,0.0f); glVertex3f(1.2f, -1.7f, 20.0f/3.0f);
-      glTexCoord2f(0.0f,1.0f); glVertex3f(1.2f, 2.7f, 20.0f/3.0f);
+      glTexCoord2f(1.0f,5.0f); glVertex3f(10.2f, 12.7f, 20.0f/3.0f);
+      glTexCoord2f(1.0f,0.0f); glVertex3f(10.2f, -10.7f, 20.0f/3.0f);
+      glTexCoord2f(0.0f,0.0f); glVertex3f(1.2f, -10.7f, 20.0f/3.0f);
+      glTexCoord2f(0.0f,5.0f); glVertex3f(1.2f, 12.7f, 20.0f/3.0f);
       glEnd();
 
       //Middle Corridor Floor
@@ -314,6 +314,15 @@ static void display(void)
       glTexCoord2f(1.0f,0.0f); glVertex3f(12.6f, -1.7f, -20.0f);
       glEnd();
 
+      //Right Hall Front Wall (Other side (CI106))
+      glBindTexture(GL_TEXTURE_2D, texName[2]);
+      glBegin(GL_QUADS);
+      glTexCoord2f(0.0f,1.0f); glVertex3f(9.8f, 2.7f, -20.0f);
+      glTexCoord2f(1.0f,1.0f); glVertex3f(12.6f, 2.7f, -20.0f);
+      glTexCoord2f(1.0f,0.0f); glVertex3f(12.6f, -1.7f, -20.0f);
+      glTexCoord2f(0.0f,0.0f); glVertex3f(9.8f, -1.7f, -20.0f);
+      glEnd();
+
       //Right Hall Left (Half) Wall
       glBindTexture(GL_TEXTURE_2D, texName[2]);
       glBegin(GL_QUADS);
@@ -332,13 +341,13 @@ static void display(void)
       glTexCoord2f(1.0f/3.0f,0.0f); glVertex3f(10.2f, -0.5f, 0.0f);
       glEnd();
 
-      //Right Hall Left Wall (Other side)
+      //Right Hall Left (half) Wall (Other side)
       glBindTexture(GL_TEXTURE_2D, texName[4]);
       glBegin(GL_QUADS);
-      glTexCoord2f(0.0f,1.0f); glVertex3f(9.8f, -0.5f, -20.0f);
-      glTexCoord2f(0.0f,0.0f); glVertex3f(9.8f, -1.7f, -20.0f);
-      glTexCoord2f(18.0f,0.0f); glVertex3f(9.8f, -1.7f, 0.0f);
-      glTexCoord2f(18.0f,1.0f); glVertex3f(9.8f, -0.5f, 0.0f);
+      glTexCoord2f(0.0f,9.0f); glVertex3f(9.8f, -0.5f, -20.0f);
+      glTexCoord2f(0.0f,0.0f); glVertex3f(9.8f, -10.7f, -20.0f);
+      glTexCoord2f(18.0f,0.0f); glVertex3f(9.8f, -10.7f, 0.0f);
+      glTexCoord2f(18.0f,9.0f); glVertex3f(9.8f, -0.5f, 0.0f);
       glEnd();
 
       //Right Hall Left Wall
@@ -353,29 +362,158 @@ static void display(void)
       //Right Hall Left Wall (Other Side (stairs))
       glBindTexture(GL_TEXTURE_2D, texName[2]);
       glBegin(GL_QUADS);
-      glTexCoord2f(0.0f,3.0f); glVertex3f(10.2f, 2.7f, 0.0f);
-      glTexCoord2f(1.0f,3.0f); glVertex3f(10.2f, -1.7f, 0.0f);
-      glTexCoord2f(1.0f,0.0f); glVertex3f(10.2f, -1.7f, 20.0f/3.0f + 20.0f/6.0f);
-      glTexCoord2f(0.0f,0.0f); glVertex3f(10.2f, 2.7f, 20.0f/3.0f + 20.0f/6.0f);
+      glTexCoord2f(0.0f,3.0f); glVertex3f(10.2f, 12.7f, 0.0f);
+      glTexCoord2f(4.0f,3.0f); glVertex3f(10.2f, -10.7f, 0.0f);
+      glTexCoord2f(4.0f,0.0f); glVertex3f(10.2f, -10.7f, 20.0f/3.0f + 20.0f/6.0f);
+      glTexCoord2f(0.0f,0.0f); glVertex3f(10.2f, 12.7f, 20.0f/3.0f + 20.0f/6.0f);
       glEnd();
 
       //Middle Wall
       glBindTexture(GL_TEXTURE_2D, texName[4]);
       glBegin(GL_QUADS);
-      glTexCoord2f(0.0f,0.0f); glVertex3f(10.2f, 2.7f, 0.0f);
-      glTexCoord2f(3.0f,0.0f); glVertex3f(10.2f, -1.7f, 0.0f);
-      glTexCoord2f(3.0f,9.0f); glVertex3f(1.2f, -1.7f, 0.0f);
-      glTexCoord2f(0.0f,9.0f); glVertex3f(1.2f, 2.7f, 0.0f);
+      glTexCoord2f(0.0f,0.0f); glVertex3f(10.2f, 12.7f, 0.0f);
+      glTexCoord2f(18.0f,0.0f); glVertex3f(10.2f, -10.7f, 0.0f);
+      glTexCoord2f(18.0f,9.0f); glVertex3f(1.2f, -10.7f, 0.0f);
+      glTexCoord2f(0.0f,9.0f); glVertex3f(1.2f, 12.7f, 0.0f);
+      glEnd();
+
+      //Right Hall Top Outer Wall
+      glBindTexture(GL_TEXTURE_2D, texName[4]);
+      glBegin(GL_QUADS);
+      glTexCoord2f(0.0f,10.0f); glVertex3f(9.8f, 12.7f, -20.0f);
+      glTexCoord2f(0.0f,0.0f); glVertex3f(9.8f, 2.7f, -20.0f);
+      glTexCoord2f(18.0f,0.0f); glVertex3f(9.8f, 2.7f, 0.0f);
+      glTexCoord2f(18.0f,10.0f); glVertex3f(9.8f, 12.7f, 0.0f);
       glEnd();
 
       //Middle Wall (Other Side)
       glBindTexture(GL_TEXTURE_2D, texName[2]);
       glBegin(GL_QUADS);
-      glTexCoord2f(0.0f,3.0f); glVertex3f(1.2f, 2.7f, 0.0f);
-      glTexCoord2f(1.0f,3.0f); glVertex3f(1.2f, -1.7f, 0.0f);
-      glTexCoord2f(1.0f,0.0f); glVertex3f(10.2f, -1.7f, 0.0f);
-      glTexCoord2f(0.0f,0.0f); glVertex3f(10.2f, 2.7f, 0.0f);
+      glTexCoord2f(0.0f,3.0f); glVertex3f(1.2f, 12.7f, 0.0f);
+      glTexCoord2f(4.0f,3.0f); glVertex3f(1.2f, -10.7f, 0.0f);
+      glTexCoord2f(4.0f,0.0f); glVertex3f(10.2f, -10.7f, 0.0f);
+      glTexCoord2f(0.0f,0.0f); glVertex3f(10.2f, 12.7f, 0.0f);
       glEnd();
+
+      //Broken Stairs
+      glBindTexture(GL_TEXTURE_2D, texName[5]);
+      glBegin(GL_QUADS);
+      glTexCoord2f(0.0f,1.0f); glVertex3f(10.2f, -10.7f, 0.0f);
+      glTexCoord2f(0.0f,0.0f); glVertex3f(1.2f, -10.7f, 0.0f);
+      glTexCoord2f(1.0f,0.0f); glVertex3f(1.2f, -10.7f, 20.0f/3.0f);
+      glTexCoord2f(1.0f,1.0f); glVertex3f(10.2f, -10.7f, 20.0f/3.0f);
+      glEnd();
+
+      //Left Hall Outer Wall
+      glBindTexture(GL_TEXTURE_2D, texName[4]);
+      glBegin(GL_QUADS);
+      glTexCoord2f(4.0f,22.0f); glVertex3f(1.6f, 12.7f, -25.0f);
+      glTexCoord2f(0.0f,22.0f); glVertex3f(1.6f, 12.7f, -20.0f);
+      glTexCoord2f(0.0f,0.0f); glVertex3f(1.6f, -10.7f, -20.0f);
+      glTexCoord2f(4.0f,0.0f); glVertex3f(1.6f, -10.7f, -25.0f);
+      glEnd();
+
+      //Right Hall Outer Wall
+      glBindTexture(GL_TEXTURE_2D, texName[4]);
+      glBegin(GL_QUADS);
+      glTexCoord2f(4.0f,22.0f); glVertex3f(9.8f, 12.7f, -20.0f);
+      glTexCoord2f(0.0f,22.0f); glVertex3f(9.8f, 12.7f, -25.0f);
+      glTexCoord2f(0.0f,0.0f); glVertex3f(9.8f, -10.7f, -25.0f);
+      glTexCoord2f(4.0f,0.0f); glVertex3f(9.8f, -10.7f, -20.0f);
+      glEnd();
+
+      //Left Hall Outer Top Wall
+      glBindTexture(GL_TEXTURE_2D, texName[4]);
+      glBegin(GL_QUADS);
+      glTexCoord2f(0.0f,10.0f); glVertex3f(1.6f, 12.7f, 0.0f);
+      glTexCoord2f(0.0f,0.0f); glVertex3f(1.6f, 2.7f, 0.0f);
+      glTexCoord2f(18.0f,0.0f); glVertex3f(1.6f, 2.7f, -20.0f);
+      glTexCoord2f(18.0f,10.0f); glVertex3f(1.6f, 12.7f, -20.0f);
+      glEnd();
+
+      /////////////////Sala 106////////////////
+
+      //Left Wall
+      glBindTexture(GL_TEXTURE_2D, texName[2]);
+      glBegin(GL_QUADS);
+      glTexCoord2f(1.0f,1.0f); glVertex3f(9.8f, 2.7f, -25.0f);
+      glTexCoord2f(0.0f,1.0f); glVertex3f(9.8f, 2.7f, -20.0f);
+      glTexCoord2f(0.0f,0.0f); glVertex3f(9.8f, -1.7f, -20.0f);
+      glTexCoord2f(1.0f,0.0f); glVertex3f(9.8f, -1.7f, -25.0f);
+      glEnd();
+
+      //Floor
+      glBindTexture(GL_TEXTURE_2D, texName[1]);
+      glBegin(GL_QUADS);
+      glTexCoord2f(0.0f,5.0f); glVertex3f(12.6f, -1.7f, -25.0f);
+      glTexCoord2f(0.0f,0.0f); glVertex3f(12.6f, -1.7f, -10.0f);
+      glTexCoord2f(5.0f,0.0f); glVertex3f(24.8f, -1.7f, -10.0f);
+      glTexCoord2f(5.0f,5.0f); glVertex3f(24.8f, -1.7f, -25.0f);
+      glEnd();
+
+      //Other Floor
+      glBindTexture(GL_TEXTURE_2D, texName[1]);
+      glBegin(GL_QUADS);
+      glTexCoord2f(0.0f,2.0f); glVertex3f(9.8f, -1.7f, -25.0f);
+      glTexCoord2f(0.0f,0.0f); glVertex3f(9.8f, -1.7f, -20.0f);
+      glTexCoord2f(1.0f,0.0f); glVertex3f(12.6f, -1.7f, -20.0f);
+      glTexCoord2f(1.0f,2.0f); glVertex3f(12.6f, -1.7f, -25.0f);
+      glEnd();
+
+      //Front Wall
+      glBindTexture(GL_TEXTURE_2D, texName[2]);
+      glBegin(GL_QUADS);
+      glTexCoord2f(1.0f,1.0f); glVertex3f(9.8f, 2.7f, -25.0f);
+      glTexCoord2f(0.0f,1.0f); glVertex3f(9.8f, -1.7f, -25.0f);
+      glTexCoord2f(0.0f,0.0f); glVertex3f(24.8f, -1.7f, -25.0f);
+      glTexCoord2f(1.0f,0.0f); glVertex3f(24.8f, 2.7f, -25.0f);
+      glEnd();
+
+      //Right Wall
+      glBindTexture(GL_TEXTURE_2D, texName[2]);
+      glBegin(GL_QUADS);
+      glTexCoord2f(1.0f,1.0f); glVertex3f(24.8f, 2.7f, -25.0f);
+      glTexCoord2f(0.0f,1.0f); glVertex3f(24.8f, -1.7f, -25.0f);
+      glTexCoord2f(0.0f,0.0f); glVertex3f(24.8f, -1.7f, -10.0f);
+      glTexCoord2f(1.0f,0.0f); glVertex3f(24.8f, 2.7f, -10.0f);
+      glEnd();
+
+      //Back Wall
+      glBindTexture(GL_TEXTURE_2D, texName[2]);
+      glBegin(GL_QUADS);
+      glTexCoord2f(1.0f,1.0f); glVertex3f(24.8f, 2.7f, -10.0f);
+      glTexCoord2f(0.0f,1.0f); glVertex3f(24.8f, -1.7f, -10.0f);
+      glTexCoord2f(0.0f,0.0f); glVertex3f(12.6f, -1.7f, -10.0f);
+      glTexCoord2f(1.0f,0.0f); glVertex3f(12.6f, 2.7f, -10.0f);
+      glEnd();
+
+      //Other Left Wall
+      glBindTexture(GL_TEXTURE_2D, texName[2]);
+      glBegin(GL_QUADS);
+      glTexCoord2f(1.0f,1.0f); glVertex3f(12.6f, 2.7f, -10.0f);
+      glTexCoord2f(0.0f,1.0f); glVertex3f(12.6f, -1.7f, -10.0f);
+      glTexCoord2f(0.0f,0.0f); glVertex3f(12.6f, -1.7f, -20.0f);
+      glTexCoord2f(1.0f,0.0f); glVertex3f(12.6f, 2.7f, -20.0f);
+      glEnd();
+
+      //Ceiling1
+      glBindTexture(GL_TEXTURE_2D, texName[3]);
+      glBegin(GL_QUADS);
+      glTexCoord2f(0.0f,2.0f); glVertex3f(9.8f, 2.7f, -20.0f);
+      glTexCoord2f(0.0f,0.0f); glVertex3f(9.8f, 2.7f, -25.0f);
+      glTexCoord2f(1.0f,0.0f); glVertex3f(12.6f, 2.7f, -25.0f);
+      glTexCoord2f(1.0f,2.0f); glVertex3f(12.6f, 2.7f, -20.0f);
+      glEnd();
+
+      //Ceiling2
+      glBindTexture(GL_TEXTURE_2D, texName[3]);
+      glBegin(GL_QUADS);
+      glTexCoord2f(0.0f,5.0f); glVertex3f(12.6f, 2.7f, -10.0f);
+      glTexCoord2f(0.0f,0.0f); glVertex3f(12.6f, 2.7f, -25.0f);
+      glTexCoord2f(5.0f,0.0f); glVertex3f(24.8f, 2.7f, -25.0f);
+      glTexCoord2f(5.0f,5.0f); glVertex3f(24.8f, 2.7f, -10.0f);
+      glEnd();
+
 
      glDisable(GL_TEXTURE_2D);
 
