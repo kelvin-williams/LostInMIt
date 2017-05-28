@@ -161,7 +161,7 @@ void init2(){
     //////OBJETOS//////////////////////////////////////////////////
     
     init_list(&trianglelist[0]);
-    LoadObject2("2box.obj", &trianglelist[0]);
+    LoadObject2("Chair_02.obj", &trianglelist[0]);
 
 
     ////INTOTHELIGHT////////////////////////////////////////////////////
