@@ -646,6 +646,19 @@ static void display(void)
       glTexCoord2f(5.0f,5.0f); glVertex3f(24.8f, 2.7f, -10.0f);
       glEnd();
 
+      /////////////THEDOORS///////////////////////////////////
+
+      //CI101
+      //Ceiling2
+      glBindTexture(GL_TEXTURE_2D, texName[7]);
+      glBegin(GL_QUADS);
+      glNormal3f(0.0f,-1.0f,0.0f);
+      glTexCoord2f(1.0f,1.0f); glVertex3f(0.7f, 1.0f, -19.95f);
+      glTexCoord2f(0.0f,1.0f); glVertex3f(-0.7f, 1.0f, -19.95f);
+      glTexCoord2f(0.0f,0.0f); glVertex3f(-0.7f, -1.7f, -19.95f);
+      glTexCoord2f(1.0f,0.0f); glVertex3f(0.7f, -1.7f, -19.95f);
+      glEnd();
+
 
      glDisable(GL_TEXTURE_2D);
      
