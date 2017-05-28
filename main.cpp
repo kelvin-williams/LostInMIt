@@ -128,9 +128,14 @@ void inBoxF(Camera *p, tAABB sala){
 GLfloat LightAmbient[]= { 1.0f, 1.0f, 1.0f, 1.0f };
 GLfloat LightDiffuse[]= { 1.0f, 1.0f, 1.0f, 1.0f };
 GLfloat light_specular[] = { 0.0f, 0.0f, 0.0f, 1.0f };
-GLfloat LightPosition1[]= { 0.0f, 9.9f, 0.0f, 1.0f };
+GLfloat LightPosition1[]= { 5.7f, 12.7f, -25.0f, 1.0f };
 GLfloat LightPosition2[]= { (-2), 9.9f, 0.0f, 1.0f };
 GLfloat LightPosition3[]= { (2), 9.9f, 0.0f, 1.0f };
+
+ GLfloat mat_ambient[]    = { 0.5f, 0.5f, 0.5f, 1.0f };
+ GLfloat mat_diffuse[]    = { 0.6f, 0.6f, 0.6f, 1.0f };
+ GLfloat mat_specular[]   = { 1.0f, 1.0f, 1.0f, 1.0f };
+ GLfloat high_shininess[] = { 100.0f };
 
 
 
@@ -184,9 +189,11 @@ static void display(void)
 				camera.camx, camera.camy, camera.camz,	//look at da camera
 				0.0f, 1.0f, 0.0f);  //vetor UP da camera
     
-   
+       glPushMatrix();
+            glLightfv(GL_LIGHT1, GL_POSITION, LightPosition1);
+        glPopMatrix();
     ///NO TEXTURE
-    
+   // glEnable(GL_COLOR_MATERIAL);
     ///////////////OBJECTS///////////////////////
     glPushMatrix();
       glTranslated(17.0,-1.7,-20);
@@ -195,9 +202,9 @@ static void display(void)
       PrintObj(&trianglelist[0]);
       glPopMatrix();
 
-
+   // glDisable(GL_COLOR_MATERIAL);
 /////YES TEXTURE/////////////////
-
+ //glColor3f(1.0f, 1.0f, 1.0f);
  glEnable(GL_TEXTURE_2D);
  glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
    // glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
@@ -368,7 +375,7 @@ static void display(void)
       //Right Hall Left (Final) Wall
       glBindTexture(GL_TEXTURE_2D, texName[2]);
       glBegin(GL_QUADS);
-      glNormal3f(0.0f,0.0f,-1.0f);
+      glNormal3f(1.0f,0.0f,0.0f);
       glTexCoord2f(0.0f,0.0f); glVertex3f(10.2f, 2.7f, 20.0f);
       glTexCoord2f(1.0f,0.0f); glVertex3f(10.2f, -1.7f, 20.0f);
       glTexCoord2f(1.0f,3.0f); glVertex3f(10.2f, -1.7f, 2.0f*20.0f/3.0f);
@@ -723,16 +730,18 @@ int main(int argc, char *argv[])
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LEQUAL);
     glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+   // glEnable(GL_NORMALIZE);
+    //glEnable(GL_COLOR_MATERIAL);
+
+  //  glMaterialfv(GL_FRONT, GL_AMBIENT,   mat_ambient);
+  //  glMaterialfv(GL_FRONT, GL_DIFFUSE,   mat_diffuse);
+  //  glMaterialfv(GL_FRONT, GL_SPECULAR,  mat_specular);
+  //  glMaterialfv(GL_FRONT, GL_SHININESS, high_shininess);
 
 	glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient);
 	glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse);
     glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
-    
-    glPushMatrix();
-    glLoadIdentity();
 	glLightfv(GL_LIGHT1, GL_POSITION, LightPosition1);
-    glPopMatrix();
-
 	glEnable(GL_LIGHT1);
 	glLightfv(GL_LIGHT2, GL_AMBIENT, LightAmbient);
 	glLightfv(GL_LIGHT2, GL_DIFFUSE, LightDiffuse);
