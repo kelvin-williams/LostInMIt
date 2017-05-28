@@ -29,6 +29,7 @@ typedef struct triangle{
 
     glm::dvec3 p1p, p2p, p3p;//Vértices do triângulo
     glm::dvec3 p1n, p2n, p3n;//Normais dos Três vértices
+    glm::dvec2 p1t, p2t, p3t;//Coordenadas de Textura
     
 }Triangle;
 
@@ -195,12 +196,7 @@ static void display(void)
     ///NO TEXTURE
    // glEnable(GL_COLOR_MATERIAL);
     ///////////////OBJECTS///////////////////////
-    glPushMatrix();
-      glTranslated(17.0,-1.7,-20);
-      glRotated(-90,0,1,0);
-      glScaled(0.7,0.7,0.5);
-      PrintObj(&trianglelist[0]);
-      glPopMatrix();
+    
 
    // glDisable(GL_COLOR_MATERIAL);
 /////YES TEXTURE/////////////////
@@ -209,7 +205,13 @@ static void display(void)
  glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
    // glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
     /////////////////QUADS/////////////////////////////////////////
-    
+    glBindTexture(GL_TEXTURE_2D, texName[6]);
+    glPushMatrix();
+      glTranslated(0.0,-1.7,0.0);
+      //glRotated(-90,0,1,0);
+      glScaled(0.03,0.03,0.03);
+      PrintObj(&trianglelist[0]);
+      glPopMatrix();
     
       //Left Hall Floor
       glBindTexture(GL_TEXTURE_2D, texName[1]);

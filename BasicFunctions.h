@@ -44,6 +44,8 @@ void LoadObject2(const char * obj, List * list){
             t.p1n = {(float) scene->mMeshes[mesh]->mNormals[scene->mMeshes[mesh]->mFaces[face].mIndices[0]].x,
                      (float) scene->mMeshes[mesh]->mNormals[scene->mMeshes[mesh]->mFaces[face].mIndices[0]].y,
                      (float) scene->mMeshes[mesh]->mNormals[scene->mMeshes[mesh]->mFaces[face].mIndices[0]].z};
+            t.p1t = {(float)scene->mMeshes[mesh]->mTextureCoords[0][scene->mMeshes[mesh]->mFaces[face].mIndices[0]].x,
+                     (float)scene->mMeshes[mesh]->mTextureCoords[0][scene->mMeshes[mesh]->mFaces[face].mIndices[0]].y};
 
 
             t.p2p = {  (float) scene->mMeshes[mesh]->mVertices[scene->mMeshes[mesh]->mFaces[face].mIndices[1]].x,
@@ -52,6 +54,8 @@ void LoadObject2(const char * obj, List * list){
             t.p2n = {(float) scene->mMeshes[mesh]->mNormals[scene->mMeshes[mesh]->mFaces[face].mIndices[1]].x,
                      (float) scene->mMeshes[mesh]->mNormals[scene->mMeshes[mesh]->mFaces[face].mIndices[1]].y,
                      (float) scene->mMeshes[mesh]->mNormals[scene->mMeshes[mesh]->mFaces[face].mIndices[1]].z};
+            t.p2t = {(float)scene->mMeshes[mesh]->mTextureCoords[0][scene->mMeshes[mesh]->mFaces[face].mIndices[1]].x,
+                     (float)scene->mMeshes[mesh]->mTextureCoords[0][scene->mMeshes[mesh]->mFaces[face].mIndices[1]].y};
 
 
             t.p3p = {  (float) scene->mMeshes[mesh]->mVertices[scene->mMeshes[mesh]->mFaces[face].mIndices[2]].x,
@@ -60,6 +64,9 @@ void LoadObject2(const char * obj, List * list){
             t.p3n = {(float) scene->mMeshes[mesh]->mNormals[scene->mMeshes[mesh]->mFaces[face].mIndices[2]].x,
                      (float) scene->mMeshes[mesh]->mNormals[scene->mMeshes[mesh]->mFaces[face].mIndices[2]].y,
                      (float) scene->mMeshes[mesh]->mNormals[scene->mMeshes[mesh]->mFaces[face].mIndices[2]].z};
+            t.p3t = {(float)scene->mMeshes[mesh]->mTextureCoords[0][scene->mMeshes[mesh]->mFaces[face].mIndices[2]].x,
+                     (float)scene->mMeshes[mesh]->mTextureCoords[0][scene->mMeshes[mesh]->mFaces[face].mIndices[2]].y};
+
 
             list_add(list, t);
            
@@ -157,11 +164,23 @@ void init2(){
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_LINEAR);
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR_MIPMAP_LINEAR);
 
+    texName[6] = SOIL_load_OGL_texture
+        (
+        "chair.tga",
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_INVERT_Y|
+        SOIL_FLAG_MIPMAPS
+        );
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR_MIPMAP_LINEAR);
 
     //////OBJETOS//////////////////////////////////////////////////
     
     init_list(&trianglelist[0]);
-    LoadObject2("Chair_02.obj", &trianglelist[0]);
+    LoadObject2("texchair.obj", &trianglelist[0]);
 
 
     ////INTOTHELIGHT////////////////////////////////////////////////////
@@ -276,12 +295,15 @@ void PrintObj(List * list){
         glColor3f(0.0f, 1.0f, 0.0f);
 
         glNormal3f(aux->t.p1n.x, aux->t.p1n.y, aux->t.p1n.z );
+        glTexCoord2f(aux->t.p1t.x, aux->t.p1t.y);
         glVertex3f(aux->t.p1p.x, aux->t.p1p.y, aux->t.p1p.z );
 
         glNormal3f(aux->t.p2n.x, aux->t.p2n.y, aux->t.p2n.z );
+        glTexCoord2f(aux->t.p2t.x, aux->t.p2t.y);
         glVertex3f(aux->t.p2p.x, aux->t.p2p.y, aux->t.p2p.z );
 
         glNormal3f(aux->t.p3n.x, aux->t.p3n.y, aux->t.p3n.z );
+        glTexCoord2f(aux->t.p3t.x, aux->t.p3t.y);
         glVertex3f(aux->t.p3p.x, aux->t.p3p.y, aux->t.p3p.z );
         
         if (aux->next == NULL) break;
