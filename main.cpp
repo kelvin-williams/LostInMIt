@@ -207,8 +207,8 @@ static void display(void)
     /////////////////QUADS/////////////////////////////////////////
     glBindTexture(GL_TEXTURE_2D, texName[6]);
     glPushMatrix();
-      glTranslated(0.0,-1.7,0.0);
-      //glRotated(-90,0,1,0);
+      glTranslated(17.0,-1.7,-20);
+      glRotated(-90,0,1,0);
       glScaled(0.03,0.03,0.03);
       PrintObj(&trianglelist[0]);
       glPopMatrix();

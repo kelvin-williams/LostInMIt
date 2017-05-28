@@ -166,7 +166,7 @@ void init2(){
 
     texName[6] = SOIL_load_OGL_texture
         (
-        "chair.tga",
+        "chairbb.png",
         SOIL_LOAD_AUTO,
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_INVERT_Y|
