@@ -850,6 +850,110 @@ static void display(void)
       PrintObj(&trianglelist[0]);
       glPopMatrix();
 
+      //////////////////CADEIRAS DA DIREITA////////////////
+
+      //Segunda fila
+
+      glBindTexture(GL_TEXTURE_2D, texName[6]);
+      glPushMatrix();
+      glTranslated(13.21,-1.7,-15.815);
+      glRotated(-90,0,1,0);
+      glScaled(0.03,0.03,0.03);
+      PrintObj(&trianglelist[0]);
+      glPopMatrix();
+
+      glBindTexture(GL_TEXTURE_2D, texName[6]);
+      glPushMatrix();
+      glTranslated(14.43,-1.7,-15.815);
+      glRotated(-90,0,1,0);
+      glScaled(0.03,0.03,0.03);
+      PrintObj(&trianglelist[0]);
+      glPopMatrix();
+
+      glBindTexture(GL_TEXTURE_2D, texName[6]);
+      glPushMatrix();
+      glTranslated(15.65,-1.7,-15.815);
+      glRotated(-90,0,1,0);
+      glScaled(0.03,0.03,0.03);
+      PrintObj(&trianglelist[0]);
+      glPopMatrix();
+
+      glBindTexture(GL_TEXTURE_2D, texName[6]);
+      glPushMatrix();
+      glTranslated(16.87,-1.7,-15.815);
+      glRotated(-90,0,1,0);
+      glScaled(0.03,0.03,0.03);
+      PrintObj(&trianglelist[0]);
+      glPopMatrix();
+
+      //Terceira fila
+
+      glBindTexture(GL_TEXTURE_2D, texName[6]);
+      glPushMatrix();
+      glTranslated(13.21,-1.7,-17.48);
+      glRotated(-90,0,1,0);
+      glScaled(0.03,0.03,0.03);
+      PrintObj(&trianglelist[0]);
+      glPopMatrix();
+
+      glBindTexture(GL_TEXTURE_2D, texName[6]);
+      glPushMatrix();
+      glTranslated(14.43,-1.7,-17.48);
+      glRotated(-90,0,1,0);
+      glScaled(0.03,0.03,0.03);
+      PrintObj(&trianglelist[0]);
+      glPopMatrix();
+
+      glBindTexture(GL_TEXTURE_2D, texName[6]);
+      glPushMatrix();
+      glTranslated(15.65,-1.7,-17.48);
+      glRotated(-90,0,1,0);
+      glScaled(0.03,0.03,0.03);
+      PrintObj(&trianglelist[0]);
+      glPopMatrix();
+
+      glBindTexture(GL_TEXTURE_2D, texName[6]);
+      glPushMatrix();
+      glTranslated(16.87,-1.7,-17.48);
+      glRotated(-90,0,1,0);
+      glScaled(0.03,0.03,0.03);
+      PrintObj(&trianglelist[0]);
+      glPopMatrix();
+
+      //Quarta fila
+
+      glBindTexture(GL_TEXTURE_2D, texName[6]);
+      glPushMatrix();
+      glTranslated(13.21,-1.7,-14.14);
+      glRotated(-90,0,1,0);
+      glScaled(0.03,0.03,0.03);
+      PrintObj(&trianglelist[0]);
+      glPopMatrix();
+
+      glBindTexture(GL_TEXTURE_2D, texName[6]);
+      glPushMatrix();
+      glTranslated(14.43,-1.7,-14.14);
+      glRotated(-90,0,1,0);
+      glScaled(0.03,0.03,0.03);
+      PrintObj(&trianglelist[0]);
+      glPopMatrix();
+
+      glBindTexture(GL_TEXTURE_2D, texName[6]);
+      glPushMatrix();
+      glTranslated(15.65,-1.7,-14.14);
+      glRotated(-90,0,1,0);
+      glScaled(0.03,0.03,0.03);
+      PrintObj(&trianglelist[0]);
+      glPopMatrix();
+
+      glBindTexture(GL_TEXTURE_2D, texName[6]);
+      glPushMatrix();
+      glTranslated(16.87,-1.7,-14.14);
+      glRotated(-90,0,1,0);
+      glScaled(0.03,0.03,0.03);
+      PrintObj(&trianglelist[0]);
+      glPopMatrix();
+
 }
 
       /////////////////WALLS/////////////////////////////////////////
