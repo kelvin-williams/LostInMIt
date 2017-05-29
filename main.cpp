@@ -101,11 +101,15 @@ tAABB p8 = {26.3f, -24.0f, 10.2f, -30.0f};
 tAABB p9 = {30.0f, -8.0f, 23.5f, -30.0f};
 tAABB p10 = {30.2f, -5.0f, 11.5f, -10.8f};
 tAABB p11 = {13.2f, -18.8f, 9.5f, -21.0f};
+tAABB p12 = {30.0f, -21.8f, 17.6f, -30.0f};
+tAABB p13 = {30.0f, -18.4f, 17.6f, -22.0f};
+tAABB p14 = {30.0f, -15.0f, 17.6f, -18.7f};
+tAABB p15 = {30.0f, -11.6f, 17.6f, -15.2f};
 
 tAABB stairs = {4.8f, 6.8f, -0.2f, -0.5f};
 tAABB door = {13.2f, -18.5f, 9.5f, -21.5f};
 
-tAABB in[11] = {p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11};
+tAABB in[15] = {p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15};
 
 
 
@@ -218,13 +222,15 @@ static void display(void)
 	
      enter(&camera, door);
 
-	for(int i = 0; i < 11; i++){
+	for(int i = 0; i < 15; i++){
 		outofBox(&camera, in[i]);
 	}
 	
 	camera.attAABB();
     
-     fim(&camera, stairs);
+    fim(&camera, stairs);
+
+    printf("%f %f\n", camera.posx, camera.posz);
 
     glMatrixMode(GL_MODELVIEW); //Switch to the drawing perspective
 	glLoadIdentity(); //Reset the drawing perspective
