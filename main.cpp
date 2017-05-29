@@ -407,6 +407,97 @@ static void display(void)
       PrintObj(&trianglelist[4]);
       glPopMatrix();
 
+      ///////SEGUNDA FILA//////////
+      //pc11
+      glBindTexture(GL_TEXTURE_2D, texName[23]);
+      glPushMatrix();
+      glTranslated(23.58,-0.6,-19.66);
+      glRotated(180,0,1,0);
+      glScaled(0.2,0.3,0.3);
+      PrintObj(&trianglelist[3]);
+      glPopMatrix();
+
+      //pc12
+      glBindTexture(GL_TEXTURE_2D, texName[23]);
+      glPushMatrix();
+      glTranslated(24.2,-0.6,-19.66);
+      glRotated(180,0,1,0);
+      glScaled(0.7,0.7,0.7);
+      PrintObj(&trianglelist[4]);
+      glPopMatrix();
+
+      //pc21
+      glBindTexture(GL_TEXTURE_2D, texName[23]);
+      glPushMatrix();
+      glTranslated(22.36,-0.6,-19.66);
+      glRotated(180,0,1,0);
+      glScaled(0.2,0.3,0.3);
+      PrintObj(&trianglelist[3]);
+      glPopMatrix();
+
+      //pc22
+      glBindTexture(GL_TEXTURE_2D, texName[23]);
+      glPushMatrix();
+      glTranslated(22.98,-0.6,-19.66);
+      glRotated(180,0,1,0);
+      glScaled(0.7,0.7,0.7);
+      PrintObj(&trianglelist[4]);
+      glPopMatrix();
+
+      //pc31
+      glBindTexture(GL_TEXTURE_2D, texName[23]);
+      glPushMatrix();
+      glTranslated(21.14,-0.6,-19.66);
+      glRotated(180,0,1,0);
+      glScaled(0.2,0.3,0.3);
+      PrintObj(&trianglelist[3]);
+      glPopMatrix();
+
+      //pc32
+      glBindTexture(GL_TEXTURE_2D, texName[23]);
+      glPushMatrix();
+      glTranslated(21.76,-0.6,-19.66);
+      glRotated(180,0,1,0);
+      glScaled(0.7,0.7,0.7);
+      PrintObj(&trianglelist[4]);
+      glPopMatrix();
+
+      //pc41
+      glBindTexture(GL_TEXTURE_2D, texName[23]);
+      glPushMatrix();
+      glTranslated(19.92,-0.6,-19.66);
+      glRotated(180,0,1,0);
+      glScaled(0.2,0.3,0.3);
+      PrintObj(&trianglelist[3]);
+      glPopMatrix();
+
+      //pc42
+      glBindTexture(GL_TEXTURE_2D, texName[23]);
+      glPushMatrix();
+      glTranslated(20.54,-0.6,-19.66);
+      glRotated(180,0,1,0);
+      glScaled(0.7,0.7,0.7);
+      PrintObj(&trianglelist[4]);
+      glPopMatrix();
+
+      //pc51
+      glBindTexture(GL_TEXTURE_2D, texName[23]);
+      glPushMatrix();
+      glTranslated(18.7,-0.6,-19.66);
+      glRotated(180,0,1,0);
+      glScaled(0.2,0.3,0.3);
+      PrintObj(&trianglelist[3]);
+      glPopMatrix();
+
+      //pc52
+      glBindTexture(GL_TEXTURE_2D, texName[23]);
+      glPushMatrix();
+      glTranslated(19.32,-0.6,-19.66);
+      glRotated(180,0,1,0);
+      glScaled(0.7,0.7,0.7);
+      PrintObj(&trianglelist[4]);
+      glPopMatrix();
+
 
     /////////CHAIRS/////////////////////////////////////
     glMaterialfv(GL_FRONT, GL_SPECULAR,  mat_specularoff);
