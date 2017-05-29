@@ -88,6 +88,7 @@ List trianglelist[10];
 using namespace sowi;
 
 Camera camera;
+bool close = false;
 
 tAABB p1 = {2.2f, -18.8f, -2.2f, -22.0f};
 tAABB p2 = {13.2f, 20.8f, -2.2f, 18.8f};
@@ -99,9 +100,12 @@ tAABB p7 = {11.2f, -20.0f, 1.3f, -26.0f};
 tAABB p8 = {26.3f, -24.0f, 10.2f, -30.0f};
 tAABB p9 = {30.0f, -8.0f, 23.5f, -30.0f};
 tAABB p10 = {30.2f, -5.0f, 11.5f, -10.8f};
-tAABB p11 = {13.2f, -18.8f, 9.5f, -21.8f};
+tAABB p11 = {13.2f, -18.8f, 9.5f, -21.0f};
 
-tAABB in[11] = {p1, p2, p3, p4, p5, p6, p7, p8, p9, p10};
+tAABB stairs = {4.8f, 6.8f, -0.2f, -0.5f};
+tAABB door = {13.2f, -18.5f, 9.5f, -21.5f};
+
+tAABB in[11] = {p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11};
 
 
 
@@ -119,11 +123,42 @@ void outofBox(Camera *p, tAABB sala){
 		}
 }
 
-void inBoxF(Camera *p, tAABB sala){
-		if((AABBtoAABB(p->futplayer, sala))){
-			p->futposx = -15.0f;
-			p->futposz = 8.5f;
-		}
+void free_mem(void)
+{
+	printf("Finalizando programa...\n\n");
+}
+
+void enter(Camera *p, tAABB sala){
+    if(p->action == true){
+        if(AABBtoAABB(p->futplayer,sala)){
+            if(p->futposz > -19.50f){
+                if(camera.camz < -20.0f){
+                    p->move = true;
+                    p->futposx = 11.0f;
+                    p->futposz = -21.5f;
+                }
+            } 
+            else{
+                if(camera.camz > -19.8f){
+                    p->move = true;
+                    p->futposx = 11.0f;
+                    p->futposz = -18.8f;
+                }
+            }
+        }
+    }
+}
+
+
+void fim(Camera *p, tAABB sala){
+    if(p->action == true){
+        if(AABBtoAABB(p->futplayer,sala)){
+            if(p->camx > 1.1f){
+                glutDestroyWindow(1);
+                close = true;
+            }
+        }
+    }
 }
 
 GLfloat LightAmbient[]= { 1.0f, 1.0f, 1.0f, 1.0f };
@@ -181,12 +216,16 @@ static void display(void)
 
     camera.mover();
 	
+     enter(&camera, door);
+
 	for(int i = 0; i < 11; i++){
 		outofBox(&camera, in[i]);
 	}
 	
 	camera.attAABB();
-	
+    
+     fim(&camera, stairs);
+
     glMatrixMode(GL_MODELVIEW); //Switch to the drawing perspective
 	glLoadIdentity(); //Reset the drawing perspective
 
@@ -1019,7 +1058,9 @@ static void display(void)
      glDisable(GL_TEXTURE_2D);
      
 
-    glutSwapBuffers();
+    if(!close){
+		glutSwapBuffers();
+    }
 }
 
 
@@ -1043,6 +1084,8 @@ void keyUp(unsigned char key, int x, int y){
 
 int main(int argc, char *argv[])
 {
+    printf("\nInicializando Lost in Mit...\n");
+
     glutInit(&argc, argv);
     glutInitWindowSize(800,600);
     glutInitWindowPosition(10,10);
@@ -1050,6 +1093,8 @@ int main(int argc, char *argv[])
 
     glutCreateWindow("Lost In MIT");
     glutSetCursor(GLUT_CURSOR_NONE);
+
+    printf("\nLista de comandos:\n\n'f' para entrar/sair no modo fullscreen\n'e' para entrar/sair da sala 106\n'e' para finalizar o programa em frente as escadas\n\n");
 
     init2();
 
@@ -1096,6 +1141,7 @@ int main(int argc, char *argv[])
 	
 	glEnable(GL_LIGHTING);
     
+    atexit(free_mem);
 
     glutMainLoop();
 

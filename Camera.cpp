@@ -12,6 +12,7 @@ namespace sowi{
 	Camera::Camera(){
 		move = true;
 		full = false;
+		action = false;
 		futposx = 0.0f;
 		futposz = 0.0f;
 		posx = 0.0f;
@@ -38,6 +39,12 @@ namespace sowi{
 	}
 	Camera::~Camera(){
 
+	}
+	void Camera::actionStart(){
+		action = true;
+	}
+	void Camera::actionStop(){
+		action = false;
 	}
 	void Camera::fullStart(){
 		if(full == false)
@@ -86,6 +93,9 @@ namespace sowi{
 		if(key == 'f'){
 			fullStart();
 		}
+		if(key == 'e'){
+			actionStart();
+		}
 	}
 
 	void Camera::keyUp(unsigned char key, int x, int y){
@@ -100,6 +110,9 @@ namespace sowi{
 		}
 		if(key == 'd'){
 			direitaStop();
+		}
+		if(key == 'e'){
+			actionStop();
 		}
 	}
 
