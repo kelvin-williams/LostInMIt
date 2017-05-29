@@ -524,7 +524,7 @@ void PrintObj(List * list){
     while(aux!=NULL){
 
         glColor3f(0.2f, 0.2f, 0.2f);
-        glBegin(GL_TRIANGLES);
+        
 
         glm::vec3 n = glm::normalize(aux->t.p1n);
         glNormal3f(n.x, n.y, n.z );
@@ -541,7 +541,7 @@ void PrintObj(List * list){
         glTexCoord2f(aux->t.p3t.x, aux->t.p3t.y);
         glVertex3f(aux->t.p3p.x, aux->t.p3p.y, aux->t.p3p.z );
 
-        glEnd();
+        
         
         if (aux->next == NULL) break;
         aux = aux->next;
