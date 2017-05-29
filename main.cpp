@@ -173,7 +173,7 @@ GLfloat LightPosition3[]= { (2), 9.9f, 0.0f, 1.0f };
  GLfloat mat_ambient[]    = { 0.2f, 0.2f, 0.2f, 1.0f };
  GLfloat mat_diffuse[]    = { 0.2f, 0.2f, 0.2f, 1.0f };
  GLfloat mat_specular[]   = { 20.0f, 20.0f, 20.0f, 1.0f };
- GLfloat high_shininess[] = { 100.0f };
+ GLfloat high_shininess[] = { 128.0f };
  GLfloat light_specularoff[] = { 0.0f, 0.0f, 0.0f, 1.0f };
  GLfloat mat_specularoff[]   = { 0.0f, 0.0f, 0.0f, 1.0f };
 
@@ -261,6 +261,42 @@ static void display(void)
       //glRotated(-90,0,1,0);
       glScaled(0.2,0.65,0.2);
       PrintObj(&trianglelist[1]);
+      glPopMatrix();
+
+      //mesa1
+      glBindTexture(GL_TEXTURE_2D, texName[22]);
+      glPushMatrix();
+      glTranslated(21.5,-1.7,-23.3);
+      //glRotated(-90,0,1,0);
+      glScaled(0.7,0.5,0.3);
+      PrintObj(&trianglelist[2]);
+      glPopMatrix();
+
+      //mesa2
+      glBindTexture(GL_TEXTURE_2D, texName[22]);
+      glPushMatrix();
+      glTranslated(21.5,-1.7,-19.96);
+      //glRotated(-90,0,1,0);
+      glScaled(0.7,0.5,0.3);
+      PrintObj(&trianglelist[2]);
+      glPopMatrix();
+
+      //mesa3
+      glBindTexture(GL_TEXTURE_2D, texName[22]);
+      glPushMatrix();
+      glTranslated(21.5,-1.7,-16.62);
+      //glRotated(-90,0,1,0);
+      glScaled(0.7,0.5,0.3);
+      PrintObj(&trianglelist[2]);
+      glPopMatrix();
+
+      //mesa3
+      glBindTexture(GL_TEXTURE_2D, texName[22]);
+      glPushMatrix();
+      glTranslated(21.5,-1.7,-13.28);
+      //glRotated(-90,0,1,0);
+      glScaled(0.7,0.5,0.3);
+      PrintObj(&trianglelist[2]);
       glPopMatrix();
 
 
