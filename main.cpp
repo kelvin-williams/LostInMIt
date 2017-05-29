@@ -274,6 +274,17 @@ static void display(void)
       PrintObj(&trianglelist[1]);
       glPopMatrix();
 
+      //Quadro
+      glBindTexture(GL_TEXTURE_2D, texName[24]);
+      glBegin(GL_QUADS);
+      glNormal3f(0.0f,0.0f,-1.0f);
+      glTexCoord2f(1.0f,1.0f); glVertex3f(22.55f, 1.4f, -10.05f);
+      glTexCoord2f(0.0f,1.0f); glVertex3f(22.55f, -0.5f, -10.05f);
+      glTexCoord2f(0.0f,0.0f); glVertex3f(16.31f, -0.5f, -10.05f);
+      glTexCoord2f(1.0f,0.0f); glVertex3f(16.31f, 1.4f, -10.05f);
+      glEnd();
+
+
       //mesa1
       glBindTexture(GL_TEXTURE_2D, texName[22]);
       glPushMatrix();
