@@ -89,6 +89,7 @@ using namespace sowi;
 
 Camera camera;
 bool close = false;
+bool inside = false;
 
 tAABB p1 = {2.2f, -18.8f, -2.2f, -22.0f};
 tAABB p2 = {13.2f, 20.8f, -2.2f, 18.8f};
@@ -137,6 +138,7 @@ void enter(Camera *p, tAABB sala){
         if(AABBtoAABB(p->futplayer,sala)){
             if(p->futposz > -19.50f){
                 if(camera.camz < -20.0f){
+                    inside = true;
                     p->move = true;
                     p->futposx = 11.0f;
                     p->futposz = -21.5f;
@@ -144,6 +146,7 @@ void enter(Camera *p, tAABB sala){
             } 
             else{
                 if(camera.camz > -19.8f){
+                    inside = false;
                     p->move = true;
                     p->futposx = 11.0f;
                     p->futposz = -18.8f;
