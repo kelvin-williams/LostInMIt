@@ -1324,6 +1324,27 @@ static void display(void)
       glTexCoord2f(18.0f,10.0f); glVertex3f(1.6f, 12.7f, -20.0f);
       glEnd();
 
+      //Parada Preta do meio front
+      glBindTexture(GL_TEXTURE_2D, texName[23]);
+      glBegin(GL_QUADS);
+      glNormal3f(0.0f,0.0f,1.0f);
+      glTexCoord2f(0.0f,1.0f); glVertex3f(1.6f, -1.2f, -21.0f);
+      glTexCoord2f(0.0f,0.0f); glVertex3f(1.6f, -3.2f, -21.0f);
+      glTexCoord2f(1.0f,0.0f); glVertex3f(9.8f, -3.2f, -21.0f);
+      glTexCoord2f(1.0f,1.0f); glVertex3f(9.8f, -1.2f, -21.0f);
+      glEnd();
+
+      //Parada Preta do meio top
+      glBindTexture(GL_TEXTURE_2D, texName[23]);
+      glBegin(GL_QUADS);
+      glNormal3f(0.0f,1.0f,0.0f);
+      glTexCoord2f(0.0f,1.0f); glVertex3f(1.6f, -1.2f, -21.5f);
+      glTexCoord2f(0.0f,0.0f); glVertex3f(1.6f, -1.2f, -21.0f);
+      glTexCoord2f(1.0f,0.0f); glVertex3f(9.8f, -1.2f, -21.0f);
+      glTexCoord2f(1.0f,1.0f); glVertex3f(9.8f, -1.2f, -21.5f);
+      glEnd();
+
+
       /////////////////Sala 106////////////////
 
       //Left Wall
