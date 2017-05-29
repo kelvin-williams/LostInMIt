@@ -314,7 +314,7 @@ static void display(void)
       glMaterialfv(GL_FRONT, GL_SPECULAR,  mat_specularpc);
       glLightfv(GL_LIGHT1, GL_SPECULAR, light_specularpc);
       glLightfv(GL_LIGHT2, GL_SPECULAR, light_specularpc);
-      if(inside){/*
+      if(inside){
       ///////PCS/////////////////
       ///////PRIMEIRA FILA//////////
       //pc11
@@ -680,7 +680,7 @@ static void display(void)
       PrintObj(&trianglelist[4]);
       glPopMatrix();
 
-*/
+
     /////////CHAIRS/////////////////////////////////////
     glMaterialfv(GL_FRONT, GL_SPECULAR,  mat_specularoff);
     glLightfv(GL_LIGHT1, GL_SPECULAR, light_specularoff);
