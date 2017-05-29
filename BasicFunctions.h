@@ -344,6 +344,12 @@ void init2(){
     init_list(&trianglelist[2]);
     LoadObject2("table.obj", &trianglelist[2]);
 
+    init_list(&trianglelist[3]);
+    LoadObject2("pc.obj", &trianglelist[3]);
+
+    init_list(&trianglelist[4]);
+    LoadObject2("pc2.obj", &trianglelist[4]);
+
 
     ////SKYBOX////////////////////////////////////////////////////
     texName[19] = SOIL_load_OGL_texture
@@ -388,6 +394,19 @@ void init2(){
     texName[22] = SOIL_load_OGL_texture
         (
         "bege.png",
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_INVERT_Y|
+        SOIL_FLAG_MIPMAPS
+        );
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR_MIPMAP_LINEAR);
+
+    texName[23] = SOIL_load_OGL_texture
+        (
+        "black.png",
         SOIL_LOAD_AUTO,
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_INVERT_Y|

@@ -168,6 +168,7 @@ void fim(Camera *p, tAABB sala){
 GLfloat LightAmbient[]= { 1.0f, 1.0f, 1.0f, 1.0f };
 GLfloat LightDiffuse[]= { 1.0f, 1.0f, 1.0f, 1.0f };
 GLfloat light_specular[] = { 20.0f, 20.0f, 20.0f, 1.0f };
+GLfloat light_specularpc[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 GLfloat LightPosition1[]= { 5.7f, 12.7f, -25.0f, 1.0f };
 GLfloat LightAmbient2[]= { 0.5f, 0.5f, 0.5f, 1.0f };
 GLfloat LightDiffuse2[]= { 0.5f, 0.5f, 0.5f, 1.0f };
@@ -177,6 +178,7 @@ GLfloat LightPosition3[]= { (2), 9.9f, 0.0f, 1.0f };
  GLfloat mat_ambient[]    = { 0.2f, 0.2f, 0.2f, 1.0f };
  GLfloat mat_diffuse[]    = { 0.2f, 0.2f, 0.2f, 1.0f };
  GLfloat mat_specular[]   = { 20.0f, 20.0f, 20.0f, 1.0f };
+ GLfloat mat_specularpc[]   = { 1.0f, 1.0f, 1.0f, 1.0f };
  GLfloat high_shininess[] = { 128.0f };
  GLfloat light_specularoff[] = { 0.0f, 0.0f, 0.0f, 1.0f };
  GLfloat mat_specularoff[]   = { 0.0f, 0.0f, 0.0f, 1.0f };
@@ -230,7 +232,7 @@ static void display(void)
     
     fim(&camera, stairs);
 
-    printf("%f %f\n", camera.posx, camera.posz);
+    //printf("%f %f\n", camera.posx, camera.posz);
 
     glMatrixMode(GL_MODELVIEW); //Switch to the drawing perspective
 	glLoadIdentity(); //Reset the drawing perspective
@@ -303,6 +305,103 @@ static void display(void)
       //glRotated(-90,0,1,0);
       glScaled(0.7,0.5,0.3);
       PrintObj(&trianglelist[2]);
+      glPopMatrix();
+
+
+      glMaterialfv(GL_FRONT, GL_SPECULAR,  mat_specularpc);
+      glLightfv(GL_LIGHT1, GL_SPECULAR, light_specularpc);
+      glLightfv(GL_LIGHT2, GL_SPECULAR, light_specularpc);
+
+      ///////PCS/////////////////
+      ///////PRIMEIRA FILA//////////
+      //pc11
+      glBindTexture(GL_TEXTURE_2D, texName[23]);
+      glPushMatrix();
+      glTranslated(23.58,-0.6,-23.0);
+      glRotated(180,0,1,0);
+      glScaled(0.2,0.3,0.3);
+      PrintObj(&trianglelist[3]);
+      glPopMatrix();
+
+      //pc12
+      glBindTexture(GL_TEXTURE_2D, texName[23]);
+      glPushMatrix();
+      glTranslated(24.2,-0.6,-23.0);
+      glRotated(180,0,1,0);
+      glScaled(0.7,0.7,0.7);
+      PrintObj(&trianglelist[4]);
+      glPopMatrix();
+
+      //pc21
+      glBindTexture(GL_TEXTURE_2D, texName[23]);
+      glPushMatrix();
+      glTranslated(22.36,-0.6,-23.0);
+      glRotated(180,0,1,0);
+      glScaled(0.2,0.3,0.3);
+      PrintObj(&trianglelist[3]);
+      glPopMatrix();
+
+      //pc22
+      glBindTexture(GL_TEXTURE_2D, texName[23]);
+      glPushMatrix();
+      glTranslated(22.98,-0.6,-23.0);
+      glRotated(180,0,1,0);
+      glScaled(0.7,0.7,0.7);
+      PrintObj(&trianglelist[4]);
+      glPopMatrix();
+
+      //pc31
+      glBindTexture(GL_TEXTURE_2D, texName[23]);
+      glPushMatrix();
+      glTranslated(21.14,-0.6,-23.0);
+      glRotated(180,0,1,0);
+      glScaled(0.2,0.3,0.3);
+      PrintObj(&trianglelist[3]);
+      glPopMatrix();
+
+      //pc32
+      glBindTexture(GL_TEXTURE_2D, texName[23]);
+      glPushMatrix();
+      glTranslated(21.76,-0.6,-23.0);
+      glRotated(180,0,1,0);
+      glScaled(0.7,0.7,0.7);
+      PrintObj(&trianglelist[4]);
+      glPopMatrix();
+
+      //pc41
+      glBindTexture(GL_TEXTURE_2D, texName[23]);
+      glPushMatrix();
+      glTranslated(19.92,-0.6,-23.0);
+      glRotated(180,0,1,0);
+      glScaled(0.2,0.3,0.3);
+      PrintObj(&trianglelist[3]);
+      glPopMatrix();
+
+      //pc42
+      glBindTexture(GL_TEXTURE_2D, texName[23]);
+      glPushMatrix();
+      glTranslated(20.54,-0.6,-23.0);
+      glRotated(180,0,1,0);
+      glScaled(0.7,0.7,0.7);
+      PrintObj(&trianglelist[4]);
+      glPopMatrix();
+
+      //pc51
+      glBindTexture(GL_TEXTURE_2D, texName[23]);
+      glPushMatrix();
+      glTranslated(18.7,-0.6,-23.0);
+      glRotated(180,0,1,0);
+      glScaled(0.2,0.3,0.3);
+      PrintObj(&trianglelist[3]);
+      glPopMatrix();
+
+      //pc52
+      glBindTexture(GL_TEXTURE_2D, texName[23]);
+      glPushMatrix();
+      glTranslated(19.32,-0.6,-23.0);
+      glRotated(180,0,1,0);
+      glScaled(0.7,0.7,0.7);
+      PrintObj(&trianglelist[4]);
       glPopMatrix();
 
 
