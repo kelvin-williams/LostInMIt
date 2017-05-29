@@ -345,7 +345,7 @@ void init2(){
     LoadObject2("table.obj", &trianglelist[2]);
 
     init_list(&trianglelist[3]);
-    LoadObject2("pc.obj", &trianglelist[3]);
+    LoadObject2("2box.obj", &trianglelist[3]);
 
     init_list(&trianglelist[4]);
     LoadObject2("pc2.obj", &trianglelist[4]);
