@@ -96,7 +96,7 @@ tAABB p2 = {13.2f, 20.8f, -2.2f, 18.8f};
 tAABB p3 = {-0.3f, 20.8f, -4.2f, -20.0f};
 tAABB p4 = {11.2f, 10.8f, 0.3f, -21.0f};
 tAABB p5 = {11.2f, 20.8f, 0.3f, 12.0f};
-tAABB p6 = {13.2f, 20.8f, 11.8f, -20.0f};
+tAABB p6 = {14.2f, 20.8f, 11.8f, -20.0f};
 tAABB p7 = {11.2f, -20.0f, 1.3f, -26.0f};
 tAABB p8 = {26.3f, -24.0f, 10.2f, -30.0f};
 tAABB p9 = {30.0f, -8.0f, 23.5f, -30.0f};
@@ -106,13 +106,13 @@ tAABB p12 = {30.0f, -21.8f, 17.6f, -30.0f};
 tAABB p13 = {30.0f, -18.4f, 17.6f, -22.0f};
 tAABB p14 = {30.0f, -15.0f, 17.6f, -18.7f};
 tAABB p15 = {30.0f, -11.6f, 17.6f, -15.2f};
+tAABB p16 = {17.6f, -12.8f, 12.2f, -19.1f};
+tAABB p17 = {16.6f, -8.8f, 12.2f, -13.1f};
 
 tAABB stairs = {4.8f, 6.8f, -0.2f, -0.5f};
-tAABB door = {13.2f, -18.5f, 9.5f, -21.5f};
+tAABB door = {13.2f, -18.5f, 9.5f, -22.5f};
 
-tAABB in[15] = {p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15};
-
-
+tAABB in[17] = {p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17};
 
 /* GLUT callback Handlers */
 
@@ -145,7 +145,7 @@ void enter(Camera *p, tAABB sala){
                 }
             } 
             else{
-                if(camera.camz > -19.8f){
+                if(camera.camz > -20.2f){
                     inside = false;
                     p->move = true;
                     p->futposx = 11.0f;
@@ -227,15 +227,13 @@ static void display(void)
 	
      enter(&camera, door);
 
-	for(int i = 0; i < 15; i++){
+	for(int i = 0; i < 17; i++){
 		outofBox(&camera, in[i]);
 	}
 	
 	camera.attAABB();
     
     fim(&camera, stairs);
-
-    //printf("%f %f\n", camera.posx, camera.posz);
 
     glMatrixMode(GL_MODELVIEW); //Switch to the drawing perspective
 	glLoadIdentity(); //Reset the drawing perspective
@@ -312,12 +310,21 @@ static void display(void)
       PrintObj(&trianglelist[2]);
       glPopMatrix();
 
-      //mesa3
+      //mesa4
       glBindTexture(GL_TEXTURE_2D, texName[22]);
       glPushMatrix();
       glTranslated(21.5,-1.7,-13.28);
       //glRotated(-90,0,1,0);
       glScaled(0.7,0.5,0.3);
+      PrintObj(&trianglelist[2]);
+      glPopMatrix();
+
+      //mesa professor
+      glBindTexture(GL_TEXTURE_2D, texName[22]);
+      glPushMatrix();
+      glTranslated(14.5,-1.7,-12.28);
+      //glRotated(-90,0,1,0);
+      glScaled(0.3,0.5,0.2);
       PrintObj(&trianglelist[2]);
       glPopMatrix();
 
@@ -965,6 +972,15 @@ static void display(void)
       PrintObj(&trianglelist[0]);
       glPopMatrix();
 
+      //cadeira do professor
+      glBindTexture(GL_TEXTURE_2D, texName[6]);
+      glPushMatrix();
+      glTranslated(14.87,-1.7,-11.14);
+      glRotated(90,0,1,0);
+      glScaled(0.03,0.03,0.03);
+      PrintObj(&trianglelist[0]);
+      glPopMatrix();
+
 }
 
       /////////////////WALLS/////////////////////////////////////////
@@ -1294,6 +1310,16 @@ static void display(void)
       glTexCoord2f(1.0f,1.0f); glVertex3f(10.2f, -10.7f, 20.0f/3.0f);
       glEnd();
 
+      //Stair Ceiling
+      glBindTexture(GL_TEXTURE_2D, texName[3]);
+      glBegin(GL_QUADS);
+      glNormal3f(0.0f,-1.0f,0.0f);
+      glTexCoord2f(0.0f,1.0f); glVertex3f(1.2f, 12.7f, 0.0f);
+      glTexCoord2f(0.0f,0.0f); glVertex3f(10.2f, 12.7f, 0.0f);
+      glTexCoord2f(1.0f,0.0f); glVertex3f(10.2f, 12.7f, 20.0f/3.0f);
+      glTexCoord2f(1.0f,1.0f); glVertex3f(1.2f, 12.7f, 20.0f/3.0f);
+      glEnd();
+
       //Left Hall Outer Wall
       glBindTexture(GL_TEXTURE_2D, texName[4]);
       glBegin(GL_QUADS);
@@ -1344,6 +1370,19 @@ static void display(void)
       glTexCoord2f(1.0f,1.0f); glVertex3f(9.8f, -1.2f, -21.5f);
       glEnd();
 
+      
+      
+
+      //Bloqueio da escada
+      glBindTexture(GL_TEXTURE_2D, texName[25]);
+      glBegin(GL_QUADS);
+      glNormal3f(-1.0f,0.0f,0.0f);
+      glTexCoord2f(0.0f,1.0f); glVertex3f(1.2f, 2.7f, 0.0f);
+      glTexCoord2f(0.0f,0.0f); glVertex3f(1.2f, -1.7f, 0.0f);
+      glTexCoord2f(1.0f,0.0f); glVertex3f(1.2f, -1.7f, 20.0f/3.0f);
+      glTexCoord2f(1.0f,1.0f); glVertex3f(1.2f, 2.7f, 20.0f/3.0f);
+      glEnd();
+
 
       /////////////////Sala 106////////////////
 
@@ -1387,15 +1426,6 @@ static void display(void)
       glTexCoord2f(1.0f,0.0f); glVertex3f(24.8f, 2.7f, -25.0f);
       glEnd();
 
-      //Right Wall
-      glBindTexture(GL_TEXTURE_2D, texName[2]);
-      glBegin(GL_QUADS);
-      glNormal3f(-1.0f,0.0f,0.0f);
-      glTexCoord2f(1.0f,1.0f); glVertex3f(24.8f, 2.7f, -25.0f);
-      glTexCoord2f(0.0f,1.0f); glVertex3f(24.8f, -1.7f, -25.0f);
-      glTexCoord2f(0.0f,0.0f); glVertex3f(24.8f, -1.7f, -10.0f);
-      glTexCoord2f(1.0f,0.0f); glVertex3f(24.8f, 2.7f, -10.0f);
-      glEnd();
 
       //Back Wall
       glBindTexture(GL_TEXTURE_2D, texName[2]);
@@ -1596,8 +1626,8 @@ static void display(void)
       glBegin(GL_QUADS);
       glNormal3f(-1.0f,0.0f,0.0f);
       glTexCoord2f(0.5f,2.0/3.0f); glVertex3f(30.0f, 15.0f, -30.0f);
-      glTexCoord2f(0.5f,1.0/3.0f); glVertex3f(30.0f, -15.0f, -30.0f);
-      glTexCoord2f(0.75f,1.0f/3.0f); glVertex3f(30.0f, -15.0f, 30.0f);
+      glTexCoord2f(0.5f,1.0/3.0f); glVertex3f(30.0f, -30.0f, -30.0f);
+      glTexCoord2f(0.75f,1.0f/3.0f); glVertex3f(30.0f, -30.0f, 30.0f);
       glTexCoord2f(0.75f,2.0f/3.0f); glVertex3f(30.0f, 15.0f, 30.0f);
       glEnd();
 
@@ -1611,6 +1641,15 @@ static void display(void)
       glTexCoord2f(0.5f,1.0f); glVertex3f(30.0f, 15.0f, 30.0f);
       glEnd();
 
+      //Right Wall
+      glBindTexture(GL_TEXTURE_2D, texName[26]);
+      glBegin(GL_QUADS);
+      glNormal3f(-1.0f,0.0f,0.0f);
+      glTexCoord2f(0.0f,1.0f); glVertex3f(24.8f, 2.7f, -25.0f);
+      glTexCoord2f(0.0f,0.0f); glVertex3f(24.8f, -1.7f, -25.0f);
+      glTexCoord2f(2.0f,0.0f); glVertex3f(24.8f, -1.7f, -10.0f);
+      glTexCoord2f(2.0f,1.0f); glVertex3f(24.8f, 2.7f, -10.0f);
+      glEnd();
       
 
      glDisable(GL_TEXTURE_2D);
@@ -1698,6 +1737,9 @@ int main(int argc, char *argv[])
 //	glEnable(GL_LIGHT3);
 	
 	glEnable(GL_LIGHTING);
+
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
     atexit(free_mem);
 
